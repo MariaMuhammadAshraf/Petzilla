@@ -1,0 +1,218 @@
+﻿@{
+    Layout = null;
+    
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/style.css" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        .sidebar-link {
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            margin-bottom: 5px;
+            display: block;
+            border-radius: 6px;
+        }
+
+            .sidebar-link:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+                padding-left: 20px;
+                text-decoration: none;
+            }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        footer {
+            background-color: #ecf0f1;
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+        }
+
+        /* ---------------------------- */
+
+
+        .submenu {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #4fa68d; /* darker than #66c3a7 */
+            border-radius: 6px;
+        }
+
+        /* Expanded on hover */
+        .has-submenu:hover > .submenu {
+            max-height: 500px;
+        }
+
+        .submenu .sidebar-link {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            background-color: #4fa68d; /* even a bit darker for items */
+            margin: 2px 5px;
+            border-radius: 4px;
+            color: #fff; /* white text for contrast */
+        }
+
+            .submenu .sidebar-link:hover {
+                background-color: #367d69; /* darkest on hover */
+            }
+    </style>
+     
+   
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+
+    <!-- Mobile Navbar -->
+    <nav class="navbar navbar-light d-lg-none shadow-sm" style="background: linear-gradient(90deg, #81cbb1, #58bfa3);">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand fw-bold text-dark" asp-controller="Home" asp-action="Index">PetZilla</a>
+        </div>
+    </nav>
+
+    <!-- Main Grid Layout -->
+    <div class="container-fluid">
+        <div class="row flex-lg-nowrap">
+
+            <!-- Sidebar (Desktop) -->
+            <div class="d-none d-lg-block col-auto p-4 shadow-sm sidebar-theme">
+                <a class="navbar-brand fw-bold text-dark mb-4 d-block" asp-controller="Home" asp-action="Index">PetZilla</a>
+
+                <ul class="nav flex-column">
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="Dashboard"><i class="fas fa-gauge-high me-2"></i> Dashboard</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="Categories"><i class="fas fa-plus-circle me-2"></i>Add Categories</a></li>
+                    
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ManageNGO"><i class="fas fa-info-circle me-2"></i>Manage NGO</a></li>
+
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ManageAbout"><i class="fas fa-info-circle me-2"></i>Add About</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ManageFaq"><i class="fas fa-question-circle me-2"></i>Add Faqs</a></li>
+                   
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="StrayPets"><i class="fas fa-dog me-2"></i> Stray Pet</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ManagePets"><i class="fas fa-dog me-2"></i> Home Pet</a></li>
+
+                    <li class="nav-item has-submenu">
+                        <a class="sidebar-link text-dark" href="#">
+                            <i class="fas fa-hand-holding-heart me-2"></i> Adoption Requests
+                        </a>
+                        <ul class="submenu">
+                            <li>
+                                <a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ViewAdoptionRequests">
+                                    HomePet Request
+                                </a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ViewAdoptionRequestsStray">
+                                    StrayPet Request
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="Analytics"><i class="fas fa-chart-line me-2"></i> Analytics</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="logout"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                </ul>
+            </div>
+
+            <style>
+                /* ✅ Sidebar Theme */
+                .sidebar-theme {
+                    background: linear-gradient(180deg, #43e97b, #38f9d7);
+                    width: 250px;
+                    min-height: 100vh;
+                    border-top-right-radius: 12px;
+                    border-bottom-right-radius: 12px;
+                }
+
+                /* ✅ Sidebar Links */
+                .sidebar-link {
+                    display: block;
+                    padding: 10px 12px;
+                    border-radius: 6px;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                }
+
+                    .sidebar-link:hover {
+                        background: rgba(255, 255, 255, 0.3);
+                        text-decoration: none;
+                    }
+
+                /* ✅ Submenu styling */
+                .submenu {
+                    list-style: none;
+                    padding-left: 20px;
+                    margin-top: 5px;
+                }
+
+                    .submenu .sidebar-link {
+                        font-size: 14px;
+                        padding: 6px 10px;
+                    }
+            </style>
+
+
+            <!-- Sidebar (Mobile) -->
+            <div class="collapse d-lg-none bg-white text-dark p-3 border-bottom shadow-sm" id="mobileMenu">
+                <ul class="nav flex-column">
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="Dashboard"><i class="fas fa-gauge-high me-2"></i> Dashboard</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ManageAbout"><i class="fas fa-info-circle me-2"></i> Manage About</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="AddAbout"><i class="fas fa-plus-circle me-2"></i> Add About</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ManageFaq"><i class="fas fa-question-circle me-2"></i>Manage Faqs</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="StrayPets"><i class="fas fa-dog me-2"></i> Stray Pet</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ManagePets"><i class="fas fa-dog me-2"></i> Home Pet</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="ViewAdoptionRequests"><i class="fas fa-hand-holding-heart me-2"></i> Adoption Requests</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="Analytics"><i class="fas fa-chart-line me-2"></i> Analytics</a></li>
+                    <li><a class="sidebar-link text-dark" asp-controller="Admin" asp-action="logout"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col main-content">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

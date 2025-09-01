@@ -1,0 +1,86 @@
+﻿@model AptechVisionPetZilla.Models.PetsStray
+
+@{
+    ViewData["Title"] = "Delete Stray Pet";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@* <h2 class="text-danger text-center mb-4">Confirm Delete</h2> *@
+
+@* <div class="container border rounded p-4 shadow-sm" style="max-width: 600px;"> *@
+@*     <h4>Are you sure you want to delete this stray pet?</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+
+
+@*         <dt class="col-sm-4">Category:</dt> *@
+@*         <dd class="col-sm-8">@Model.Category</dd> *@
+
+
+
+@*         <dt class="col-sm-4">Description:</dt> *@
+@*         <dd class="col-sm-8">@Model.Description</dd> *@
+@*     </dl> *@
+
+@*     <form asp-action="DeleteStrayPets" method="post"> *@
+@*         <input type="hidden" asp-for="PetId" /> *@
+@*         <button type="submit" class="btn btn-danger">Yes, Delete</button> *@
+@*         <a asp-action="StrayPets" class="btn btn-secondary ms-2">Cancel</a> *@
+@*     </form> *@
+@* </div> *@
+
+<h2 class="text-danger text-center mb-4">Confirm Delete</h2>
+
+<div class="container border rounded p-4 shadow-sm" style="max-width: 600px;">
+    <h4>Are you sure you want to delete this stray pet?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">Category:</dt>
+        <dd class="col-sm-8">@Model.Category</dd>
+
+        <dt class="col-sm-4">Description:</dt>
+        <dd class="col-sm-8">@Model.Description</dd>
+    </dl>
+
+    <form asp-action="DeleteStrayPets" method="post">
+        <input type="hidden" asp-for="PetId" />
+
+        <!-- Gradient Buttons -->
+        <button type="submit" class="btn custom-gradient-btn">Yes, Delete</button>
+        <a asp-action="StrayPets" class="btn custom-gradient-btn-secondary ms-2">Cancel</a>
+    </form>
+</div>
+
+<!-- Custom CSS -->
+<style>
+    .custom-gradient-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black;
+        border: none;
+        padding: 8px 20px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+        .custom-gradient-btn:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            color: #fff;
+        }
+
+    .custom-gradient-btn-secondary {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black;
+        border: none;
+        padding: 8px 20px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+        .custom-gradient-btn-secondary:hover {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: #fff;
+        }
+</style>
+

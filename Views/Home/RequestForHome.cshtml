@@ -1,0 +1,125 @@
+﻿@model AptechVisionPetZilla.Models.AdoptionRequestsHome
+@{
+    ViewData["Title"] = "Adopt Home Pet";
+}
+
+<section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb position-relative"
+         style="width: 100vw;
+                min-height: 100vh;
+                overflow: hidden;
+                margin-left: calc(-50vw + 50%);
+                margin-right: calc(-50vw + 50%);
+                padding-top: 100px;   /* More top space */
+                padding-bottom: 100px; /* More bottom space */
+                background: #fff;">
+
+    <!-- 🌿 Soft Transparent Overlay -->
+    <div class="overlay"
+         style="background: linear-gradient(135deg, rgba(67,233,123,0.15), rgba(56,249,215,0.15));
+                position:absolute; top:0; left:0; right:0; bottom:0;"></div>
+
+    <div class="container d-flex justify-content-center position-relative">
+        <div class="col-md-6 col-lg-5">
+
+            <!-- 🌟 Glassmorphism Card -->
+            <div class="shadow-lg rounded-4 p-5 mt-4 mb-4"
+                 style="background: rgba(255, 255, 255, 0.08);
+                        backdrop-filter: blur(14px);
+                        border: 1.5px solid rgba(67,233,123,0.4);
+                        color: #fff;">
+
+                <h3 class="mb-4 text-center" style="font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Adopt Home Pet @ViewBag.Pet.PetName</h3>
+
+                        @if (TempData["Success"] != null)
+                        {
+                            <div class="alert alert-success text-center">@TempData["Success"]</div>
+                        }
+
+                        <form asp-controller="Home" asp-action="RequestForHome" method="post">
+                            @Html.AntiForgeryToken()
+
+                            <!-- Hidden field for PetId -->
+                            <input type="hidden" asp-for="PetId" />
+
+                            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                            <!-- Requester Name -->
+                            <div class="mb-3">
+                                <label asp-for="RequesterName" class="form-label">Your Name</label>
+                                <input asp-for="RequesterName" class="form-control" placeholder="Enter your full name" />
+                                <span asp-validation-for="RequesterName" class="text-danger"></span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label asp-for="RequesterEmail" class="form-label">Email</label>
+                                <input asp-for="RequesterEmail" class="form-control" placeholder="Enter your email" />
+                                <span asp-validation-for="RequesterEmail" class="text-danger"></span>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="mb-3">
+                                <label asp-for="RequesterPhone" class="form-label">Phone</label>
+                                <input asp-for="RequesterPhone" class="form-control" placeholder="Enter your phone number" />
+                                <span asp-validation-for="RequesterPhone" class="text-danger"></span>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="mb-3">
+                                <label asp-for="RequesterAddress" class="form-label">Address</label>
+                                <textarea asp-for="RequesterAddress" class="form-control" placeholder="Enter your address"></textarea>
+                                <span asp-validation-for="RequesterAddress" class="text-danger"></span>
+                            </div>
+
+                            <!-- Reason -->
+                            <div class="mb-3">
+                                <label asp-for="Reason" class="form-label">Reason for Adoption</label>
+                                <textarea asp-for="Reason" class="form-control" placeholder="Why do you want to adopt this pet?"></textarea>
+                                <span asp-validation-for="Reason" class="text-danger"></span>
+                            </div>
+
+
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit"
+                                        class="btn text-black fw-semibold shadow-sm gradient-btn"
+                                        style="border-radius: 30px; padding: 10px 0; font-size: 16px;">
+                                    Submit Request
+                                </button>
+                            </div>
+
+                            <!-- Back Link -->
+                            <div class="text-center mt-3">
+                                <small>
+                                    <a asp-controller="Home" asp-action="PetDetails"
+                                       class="btn fw-semibold gradient-btn text-black shadow-sm"
+                                       style="border-radius: 30px; padding: 8px 20px; font-size: 14px; text-decoration:none;">
+                                        ⬅ Back to Home Pets
+                                    </a>
+                                </small>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .gradient-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        border: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .gradient-btn:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(67, 233, 123, 0.4);
+        }
+
+</style>
+
+

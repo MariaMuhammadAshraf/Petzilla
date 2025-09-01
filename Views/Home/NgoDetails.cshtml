@@ -1,0 +1,78 @@
+﻿@model AptechVisionPetZilla.Models.Ngo
+@{
+    ViewData["Title"] = "NGO Details";
+}
+
+<!-- 📝 NGO Details Card -->
+<div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="card shadow-lg border-0 rounded-4 text-center"
+         style="width: 400px; height: 450px;">
+
+        <!-- Header -->
+        <div class="card-header py-4"
+             style="background: linear-gradient(135deg, #3bb2b8, #42e695); border-radius: 12px 12px 0 0;">
+            <h3 class="fw-bold text-black mb-0">@Model.NgoName</h3>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body p-4 text-black pb-5">
+            <dl class="row g-3 justify-content-center">
+
+                <dt class="col-sm-4 fw-semibold">Email</dt>
+                <dd class="col-sm-8 fw-bold">@Model.Email</dd>
+
+                <dt class="col-sm-4 fw-semibold">Phone</dt>
+                <dd class="col-sm-8 fw-bold">@Model.PhoneNumber</dd>
+
+                <dt class="col-sm-4 fw-semibold">Address</dt>
+                <dd class="col-sm-8 fw-bold">@Model.Address</dd>
+
+                <dt class="col-sm-4 fw-semibold">Branches</dt>
+                <dd class="col-sm-8 fw-bold">
+                    @(!string.IsNullOrEmpty(Model.Branches) ? Model.Branches : "N/A")
+                </dd>
+
+                <dt class="col-sm-4 fw-semibold">Availability</dt>
+                <dd class="col-sm-8 mb-0">
+                    @if (Model.AvailabilityStatus)
+                    {
+                        <span class="badge px-3 py-2 text-black fw-bold"
+                              style="background: linear-gradient(90deg, #00c851, #33b5e5);">
+                            Available
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge px-3 py-2 text-black fw-bold"
+                              style="background: linear-gradient(90deg, #00c851, #33b5e5);">
+                            Not Available
+                        </span>
+                    }
+                </dd>
+
+                <dt class="col-sm-4 fw-semibold">Status</dt>
+                <dd class="col-sm-8 mb-3">
+                    <span class="badge px-3 py-2 text-black fw-semi"
+                          style="background: linear-gradient(90deg, #3bb2b8, #42e695);">
+                        @Model.Status
+                    </span>
+
+                    <div class="text-center mt-3 text-black justify-content-center">
+                        <small>
+                            <a asp-action="NGOsOverview" asp-controller="Home" class="text-decoration-none fw-semibold">
+                                ← Back to List
+                            </a>
+                        </small>
+                    </div>
+                </dd>
+
+
+               
+
+            </dl>
+
+           
+
+        </div>
+    </div>
+</div>

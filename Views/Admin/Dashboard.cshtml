@@ -1,0 +1,185 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- FontAwesome link -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+@section Styles {
+    <style>
+        body {
+            background: #f8f9fa; /* Light background */
+            font-family: 'Segoe UI', sans-serif;
+            color: #2c3e50;
+        }
+
+        .analytics-header {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: black;
+            padding: 14px 25px;
+            border-radius: 12px;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 35px;
+            /* Outline in gradient theme */
+            border: 3px solid transparent;
+            outline: 3px solid transparent;
+            outline-offset: 4px;
+            background-clip: padding-box, border-box;
+            background-origin: border-box;
+            background-image: linear-gradient(135deg, #43e97b, #38f9d7), linear-gradient(135deg, #43e97b, #38f9d7);
+            /* Enhanced shadow */
+            box-shadow: 0 6px 20px rgba(67, 233, 123, 0.3), 0 6px 20px rgba(56, 249, 215, 0.3);
+        }
+
+
+        .metric-box {
+            border-radius: 18px;
+            padding: 25px 20px;
+            font-weight: 600;
+            font-size: 17px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9); /* Soft green gradient */
+            border: 1px solid #b2dfdb; /* Light green border */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Center align content */
+            height: 160px;
+        }
+
+            .metric-box:hover {
+                transform: translateY(-6px) scale(1.03);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+                border-color: #16a085; /* Highlight border on hover */
+                background: linear-gradient(135deg, #d0f0e0, #b2dfdb); /* Highlighted gradient */
+            }
+
+        .metric-icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+            color: #444; /* Light black icons */
+            transition: color 0.3s;
+        }
+
+        .metric-box:hover .metric-icon {
+            color: #16a085; /* Theme green on hover */
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000; /* Black text */
+            margin-top: 5px;
+        }
+    </style>
+}
+
+<h2 class="analytics-header"><i class="fas fa-chart-line"></i> Admin Dashboard</h2>
+
+<div class="row g-4">
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-dog"></i></div>
+            <div>Total Pets</div>
+            <div class="metric-value">@ViewBag.TotalPets ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-file-alt"></i></div>
+            <div>Total Requests</div>
+            <div class="metric-value">@ViewBag.TotalRequests ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-check-circle"></i></div>
+            <div>Approved</div>
+            <div class="metric-value">@ViewBag.ApprovedRequests ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-hourglass-half"></i></div>
+            <div>Pending</div>
+            <div class="metric-value">@ViewBag.PendingRequests ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-times-circle"></i></div>
+            <div>Rejected</div>
+            <div class="metric-value">@ViewBag.RejectedRequests ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-envelope"></i></div>
+            <div>Total Contacts</div>
+            <div class="metric-value">@ViewBag.ContactCount ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-star"></i></div> <!-- review icon -->
+            <div>Total Reviews</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.ReviewCount ?? 0</div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-hand-holding-heart"></i></div>
+            <div>Total NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.TotalNgos ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-users"></i></div>
+            <div>Available NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.AvailableNgos ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-ban"></i></div>
+            <div>Unavailable NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.UnavailableNgos ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-clock"></i></div>
+            <div>Pending NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.PendingNgos ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-check-circle"></i></div>
+            <div>Approved NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.ApprovedNgos ?? 0</div>
+        </div>
+    </div>
+   
+
+
+
+  
+
+
+
+
+
+</div>

@@ -1,0 +1,16 @@
+# Build folders
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.vscode/
+
+# ASP.NET local settings
+appsettings.Development.json
+connectionstrings.txt
+
+# Logs
+*.log

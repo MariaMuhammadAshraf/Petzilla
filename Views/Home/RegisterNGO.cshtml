@@ -1,0 +1,259 @@
+﻿@model AptechVisionPetZilla.Models.Ngo
+
+@{
+
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Register NGO";
+}
+
+
+
+<section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img"
+         style="background: #fff;   /* ⚪ pure white background */
+                width: 100vw;
+                height: 100vh;
+                margin-left: calc(-50vw + 50%);
+                margin-right: calc(-50vw + 50%);
+                overflow: hidden;
+                position: relative;">
+
+    <!-- 🌿 Soft Transparent Overlay -->
+    <div class="overlay"
+         style="background: linear-gradient(135deg, rgba(67,233,123,0.15), rgba(56,249,215,0.15));
+                position:absolute; top:0; left:0; right:0; bottom:0;"></div>
+
+    <div class="container h-100 d-flex justify-content-center align-items-center position-relative">
+        <div class="col-md-10 col-lg-6">
+
+            <!-- 🌟 Glassmorphism Card with Border -->
+            <div class="shadow-lg rounded-4 p-5"
+                 style="background: rgba(255, 255, 255, 0.08);
+                        backdrop-filter: blur(14px);
+                        border: 1.5px solid rgba(67,233,123,0.4);  /* greenish border */
+                        color: #fff;">
+                  <!-- 📝 Heading -->
+                <h2 class="mb-4 text-center fw-bold"
+                    style="color:#000;
+                           letter-spacing:1px;
+                           text-shadow:0px 1px 2px rgba(255,255,255,0.4);">
+                    NGO Adoption Form
+                </h2>
+
+
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success text-center">@TempData["success"]</div>
+                }
+
+                @if (ViewBag.Errors != null)
+                {
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach (var err in ViewBag.Errors)
+                            {
+                                <li>@err</li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                @* <form asp-action="RegisterNGO" method="post"> *@
+                @*     <div class="mb-3"> *@
+                @*         <input asp-for="NgoName" class="form-control" placeholder="NGO Name" /> *@
+                @*         <span asp-validation-for="NgoName" class="text-danger"></span> *@
+                @*     </div> *@
+
+                @*     <div class="mb-3"> *@
+                @*         <input asp-for="Email" class="form-control" placeholder="Email" /> *@
+                @*         <span asp-validation-for="Email" class="text-danger"></span> *@
+                @*     </div> *@
+
+                @*     <div class="mb-3"> *@
+                @*         <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" /> *@
+                @*         <span asp-validation-for="PhoneNumber" class="text-danger"></span> *@
+                @*     </div> *@
+
+                @*     <div class="mb-3"> *@
+                @*         <textarea asp-for="Address" class="form-control" placeholder="Address"></textarea> *@
+                @*         <span asp-validation-for="Address" class="text-danger"></span> *@
+                @*     </div> *@
+
+                @*     <div class="mb-3"> *@
+                @*         <input asp-for="Branches" class="form-control" placeholder="Branches (if any)" /> *@
+                @*     </div> *@
+
+                @*     <div class="mb-3"> *@
+                @*         <select asp-for="AvailabilityStatus" class="form-control"> *@
+                @*             <option value="">Select Availability</option> *@
+                @*             <option value="true">Available</option> *@
+                @*             <option value="false">Not Available</option> *@
+                @*         </select> *@
+                @*         <span asp-validation-for="AvailabilityStatus" class="text-danger"></span> *@
+                @*     </div> *@
+
+                @*     <!-- Submit Button --> *@
+                @*     <button type="submit" class="btn btn-success w-100 mb-2"> *@
+                @*         Submit Adoption Request *@
+                @*     </button> *@
+
+                @*     <!-- NGOs Overview Button --> *@
+                @*     <a asp-controller="Home" asp-action="NGOsOverview" class="btn btn-primary w-100"> *@
+                @*         NGOs Overview *@
+                @*     </a> *@
+
+                    
+                @* </form> *@
+
+                <form asp-action="RegisterNGO" method="post" class="appointment">
+                    <div class="row g-4">
+
+                        <!-- NGO Name -->
+                        <div class="col-md-12">
+                            <input asp-for="NgoName" class="form-control rounded-3 border-0 shadow-sm px-3 py-2"
+                                   style="background: rgba(255,255,255,0.9);"
+                                   placeholder="NGO Name" />
+                            <span asp-validation-for="NgoName" class="text-warning small"></span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-6">
+                            <input asp-for="Email" class="form-control rounded-3 border-0 shadow-sm px-3 py-2"
+                                   style="background: rgba(255,255,255,0.9);"
+                                   placeholder="Email" />
+                            <span asp-validation-for="Email" class="text-warning small"></span>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6">
+                            <input asp-for="PhoneNumber" class="form-control rounded-3 border-0 shadow-sm px-3 py-2"
+                                   style="background: rgba(255,255,255,0.9);"
+                                   placeholder="Phone Number" />
+                            <span asp-validation-for="PhoneNumber" class="text-warning small"></span>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="col-md-12">
+                            <textarea asp-for="Address" rows="3"
+                                      class="form-control rounded-3 border-0 shadow-sm px-3 py-2"
+                                      style="background: rgba(255,255,255,0.9);"
+                                      placeholder="NGO Address"></textarea>
+                            <span asp-validation-for="Address" class="text-warning small"></span>
+                        </div>
+
+                        <!-- Branches -->
+                        <div class="col-md-6">
+                            <input asp-for="Branches" class="form-control rounded-3 border-0 shadow-sm px-3 py-2"
+                                   style="background: rgba(255,255,255,0.9);"
+                                   placeholder="Branches (if any)" />
+                        </div>
+
+                        <!-- Availability -->
+                        <div class="col-md-6">
+                            <select asp-for="AvailabilityStatus"
+                                    class="form-control rounded-3 fw-semibold shadow-sm px-3 py-2"
+                                    style="background: linear-gradient(135deg, #43e97b, #38f9d7);
+                   color: #fff;
+                   border: none;
+                   font-size: 12px;
+                   letter-spacing: 0.2px;
+                   transition: all 0.3s ease;
+                   cursor: pointer;">
+                                <option value="" style="color:#333;">Availability for Adoption</option>
+                                <option value="true" style="color:#333;">Available</option>
+                                <option value="false" style="color:#333;">Not Available</option>
+                            </select>
+                            <span asp-validation-for="AvailabilityStatus" class="text-warning small"></span>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-md-12 text-center mt-5">
+                            <button type="submit"
+                                    class="form-btn px-4 py-2 d-inline-block w-100 fw-bold shadow form-btn"
+                                    style="background: #43e97b;
+                   color: #fff;
+                   border: 2px solid #38f9d7;
+                   font-size: 14px;  /* 👈 medium size */
+                   letter-spacing: 0.4px;
+                   transition: all 0.3s ease;
+                   box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                                Submit Adoption Request
+                            </button>
+                        </div>
+
+                        <!-- NGO Overview -->
+                        <div class="col-md-12 text-center mt-3 position-relative">
+                            <a asp-controller="Home" asp-action="NGOsOverview" class="form-btn d-inline-block w-100 text-center">
+                                NGOs Overview
+                            </a>
+                        </div>
+
+
+                    </div>
+                </form>
+
+
+               
+
+ 
+
+
+
+
+              
+ 
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<!-- ✅ Custom Hover Effects -->
+<style>
+    .form-btn {
+        border-radius: 10px;
+        font-size: 0.9rem; /* 👈 text size chhoti */
+        font-weight: 700;
+        padding: 8px 16px; /* 👈 button compact */
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        border: none;
+        color: #111 !important;
+        transition: all 0.35s ease;
+        box-shadow: 0 4px 10px rgba(56, 249, 215, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+
+        .form-btn:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 18px rgba(56, 249, 215, 0.45), 0 0 10px rgba(67, 233, 123, 0.35);
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+    /* Shine effect overlay */
+        .form-btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: skewX(-25deg);
+        transition: left 0.6s ease;
+        z-index: -1;
+    }
+
+        .form-btn:hover::after {
+        left: 125%;
+    }
+
+</style>

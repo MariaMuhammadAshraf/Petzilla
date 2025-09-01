@@ -1,0 +1,109 @@
+﻿@model AptechVisionPetZilla.Models.Review
+
+@{
+    ViewBag.Title = "Submit Review";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb position-relative"
+         style="width: 100vw;
+                min-height: 100vh;
+                overflow: hidden;
+                margin-left: calc(-50vw + 50%);
+                margin-right: calc(-50vw + 50%);
+                padding-top: 100px;   /* More top space */
+                padding-bottom: 100px; /* More bottom space */
+                background: #fff;">
+
+    <!-- 🌿 Soft Transparent Overlay -->
+    <div class="overlay"
+         style="background: linear-gradient(135deg, rgba(67,233,123,0.15), rgba(56,249,215,0.15));
+                position:absolute; top:0; left:0; right:0; bottom:0;"></div>
+
+    <div class="container d-flex justify-content-center position-relative">
+        <div class="col-md-6 col-lg-5">
+
+            <!-- 🌟 Glassmorphism Card -->
+            <div class="shadow-lg rounded-4 p-5 mt-4 mb-4"
+                 style="background: rgba(255, 255, 255, 0.08);
+                        backdrop-filter: blur(14px);
+                        border: 1.5px solid rgba(67,233,123,0.4);
+                        color: #fff;">
+                <h3 class="mb-4 text-center fw-bold" style="color:#000; letter-spacing:1px; text-shadow:0px 1px 2px rgba(255,255,255,0.4);">Submit Your Review</h3>
+
+                        @using (Html.BeginForm("SubmitReview", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <!-- Review Text -->
+                            <div class="mb-3">
+                                @Html.LabelFor(m => m.Text, new { @class = "form-label" })
+                                @Html.TextAreaFor(m => m.Text, new { @class = "form-control", rows = 4, placeholder = "Write your review here...", required = "required" })
+                                <div class="invalid-feedback">
+                                    Please enter your review.
+                                </div>
+                            </div>
+
+                            <!-- Name -->
+                            <div class="mb-3">
+                                @Html.LabelFor(m => m.Name, new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Your name", required = "required" })
+                                <div class="invalid-feedback">
+                                    Please enter your name.
+                                </div>
+                            </div>
+
+                            <!-- Position -->
+                            <div class="mb-3">
+                                @Html.LabelFor(m => m.Position, new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.Position, new { @class = "form-control", placeholder = "Your position or title" })
+                            </div>
+
+                            <!-- Image Upload -->
+                            <div class="mb-3">
+                                <label for="imageFile" class="form-label">Upload Image</label>
+                                <input type="file" name="imageFile" id="imageFile" class="form-control" accept="image/*" />
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn-gradient-review">Submit Review</button>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    /* Gradient Button for Review Form */
+    .btn-gradient-review {
+        border-radius: 8px;
+        font-size: 16px;
+        padding: 12px 24px; /* height aur width adjust */
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black;
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(56, 249, 215, 0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: none;
+    }
+
+        .btn-gradient-review:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 18px rgba(56, 249, 215, 0.45), 0 0 10px rgba(67, 233, 123, 0.35);
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+</style>

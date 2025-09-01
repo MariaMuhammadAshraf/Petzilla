@@ -1,0 +1,127 @@
+﻿@model AptechVisionPetZilla.Models.PetsStray
+
+@{
+    ViewData["Title"] = "Edit Stray Pet";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@* <h2 class="text-center">Edit Pet</h2> *@
+
+@* <form asp-action="EditStray" asp-controller="Admin" method="post" enctype="multipart/form-data" class="container mt-4"> *@
+@*     <input type="hidden" asp-for="PetId" /> *@
+
+@*     <div class="mb-3"> *@
+@*         <label asp-for="Category" class="form-label">Category</label> *@
+@*         <input asp-for="Category" class="form-control" /> *@
+@*         <span asp-validation-for="Category" class="text-danger"></span> *@
+@*     </div> *@
+
+@*     <div class="mb-3"> *@
+@*         <label asp-for="Description" class="form-label">Description</label> *@
+@*         <textarea asp-for="Description" class="form-control"></textarea> *@
+@*     </div> *@
+
+@*     <div class="form-check form-switch"> *@
+@*         <input type="checkbox" class="form-check-input" name="IsAvailable" *@
+@*                value="true" @(Model.IsAvailable == true ? "checked" : "") /> *@
+@*         <input type="hidden" name="IsAvailable" value="false" /> *@
+@*         <label class="form-check-label">Available for Adoption</label> *@
+@*     </div> *@
+
+@*     <div class="mb-3"> *@
+@*         <label class="form-label">Upload New Image (optional)</label> *@
+@*         <input type="file" name="petImage" class="form-control" /> *@
+@*     </div> *@
+
+@*     @if (!string.IsNullOrEmpty(Model.ImageUrl)) *@
+@*     { *@
+@*         <div class="mb-3"> *@
+@*             <label class="form-label">Current Image</label><br /> *@
+@*             <img src="@Model.ImageUrl" alt="Current Image" style="height: 200px;" /> *@
+@*         </div> *@
+@*     } *@
+
+@*     <button type="submit" class="btn btn-primary">Update</button> *@
+@*     <a asp-action="StrayPets" asp-controller="Admin" class="btn btn-secondary ms-2">Cancel</a> *@
+@* </form> *@
+
+
+@* @section Scripts { *@
+@*     <partial name="_ValidationScriptsPartial" /> *@
+@* } *@
+<h2 class="text-center fw-bold mb-4">Edit Stray Pet</h2>
+
+<form asp-action="EditStray" asp-controller="Admin" method="post" enctype="multipart/form-data" class="container mt-4">
+    <input type="hidden" asp-for="PetId" />
+
+    <div class="mb-3">
+        <label asp-for="Category" class="form-label">Category</label>
+        <input asp-for="Category" class="form-control" />
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-check form-switch mb-3">
+        <input type="checkbox" class="form-check-input" name="IsAvailable"
+               value="true" @(Model.IsAvailable == true ? "checked" : "") />
+        <input type="hidden" name="IsAvailable" value="false" />
+        <label class="form-check-label">Available for Adoption</label>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Upload New Image (optional)</label>
+        <input type="file" name="petImage" class="form-control" />
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <div class="mb-3">
+            <label class="form-label">Current Image</label><br />
+            <img src="@Model.ImageUrl" alt="Current Image" style="height: 200px;" />
+        </div>
+    }
+
+    <!-- Gradient Buttons -->
+    <button type="submit" class="btn custom-gradient-btn">Update</button>
+    <a asp-action="StrayPets" asp-controller="Admin" class="btn custom-gradient-btn-secondary ms-2">Cancel</a>
+</form>
+
+<style>
+    .custom-gradient-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black;
+        border: none;
+        padding: 8px 20px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+        .custom-gradient-btn:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            color: #fff;
+        }
+
+    .custom-gradient-btn-secondary {
+        background: linear-gradient(135deg, #38f9d7, #43e97b);
+        color: black;
+        border: none;
+        padding: 8px 20px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+        .custom-gradient-btn-secondary:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            color: #fff;
+        }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

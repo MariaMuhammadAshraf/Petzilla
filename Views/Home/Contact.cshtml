@@ -1,0 +1,301 @@
+﻿@model AptechVisionPetZilla.Models.ContactMessage
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home Page";
+
+
+}
+<!-- Display Success/Error messages -->
+@if (TempData["success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["success"]
+    </div>
+}
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["error"]
+    </div>
+}
+
+
+
+<!-- END nav -->
+<section class="hero-wrap hero-wrap-2"
+         style="background-image: url('@Url.Content("~/images/bg_2.jpg")');
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+                margin-right: calc(-50vw + 50%);
+                overflow: hidden;"
+         data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs justify-content-center mb-0">
+                    <span class="mr-2"><a asp-controller="Home" asp-action="Index">Home <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span>Contact Us <i class="ion-ios-arrow-forward"></i></span>
+                </p>
+                <h1 class="mb-0 bread">Contact Us</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    html, body {
+        overflow-x: hidden;
+    }
+</style>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section fw-bold">Get in Touch</h2>
+                <p class="text-muted">We’re here to help with adoption, fostering, or any pet care queries.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+
+            <!-- ✅ Address -->
+            <div class="col-md-3 mb-4">
+                <div class="dbox w-100 text-center shadow-sm p-4 rounded-4 bg-white h-100">
+                    <div class="icon d-flex align-items-center justify-content-center gradient-icon rounded-circle mb-3"
+                         style="width:60px;height:60px; margin:0 auto;">
+                        <span class="fa fa-map-marker text-white fs-4"></span>
+                    </div>
+                    <div class="text">
+                        <p class="fw-bold mb-1">Visit Us</p>
+                        <small>25 Green Street, Pet Lovers Plaza <br> San Francisco, CA 94105</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✅ Phone -->
+            <div class="col-md-3 mb-4">
+                <div class="dbox w-100 text-center shadow-sm p-4 rounded-4 bg-white h-100">
+                    <div class="icon d-flex align-items-center justify-content-center gradient-icon rounded-circle mb-3"
+                         style="width:60px;height:60px; margin:0 auto;">
+                        <span class="fa fa-phone text-white fs-4"></span>
+                    </div>
+                    <div class="text">
+                        <p class="fw-bold mb-1">Call Us</p>
+                        <small><a href="tel://1800123456" class="text-decoration-none">+1 800 123 456</a></small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✅ Email -->
+            <div class="col-md-3 mb-4">
+                <div class="dbox w-100 text-center shadow-sm p-4 rounded-4 bg-white h-100">
+                    <div class="icon d-flex align-items-center justify-content-center gradient-icon rounded-circle mb-3"
+                         style="width:60px;height:60px; margin:0 auto;">
+                        <span class="fa fa-envelope text-white fs-4"></span>
+                    </div>
+                    <div class="text">
+                        <p class="fw-bold mb-1">Email Us</p>
+                        <small><a href="mailto:support@petadopt.com" class="text-decoration-none">support@petadopt.com</a></small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✅ Website -->
+            <div class="col-md-3 mb-4">
+                <div class="dbox w-100 text-center shadow-sm p-4 rounded-4 bg-white h-100">
+                    <div class="icon d-flex align-items-center justify-content-center gradient-icon rounded-circle mb-3"
+                         style="width:60px;height:60px; margin:0 auto;">
+                        <span class="fa fa-globe text-white fs-4"></span>
+                    </div>
+                    <div class="text">
+                        <p class="fw-bold mb-1">Our Website</p>
+                        <small><a href="https://www.petadopt.com" class="text-decoration-none">www.petadopt.com</a></small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+                    <div class="row no-gutters">
+                        <div class="col-md-7">
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <h3 class="mb-4 fw-bold">Contact Us</h3>
+
+                                <!-- ✅ Contact Form -->
+                                <form asp-action="Contact" method="post" id="contactForm" name="contactForm" class="contactForm">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label asp-for="Name" class="label"></label>
+                                                <input type="text" placeholder="Name" class="form-control" asp-for="Name" />
+                                                <span asp-validation-for="Name" class="form-label text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label asp-for="Email" class="label"></label>
+                                                <input type="email" placeholder="Email" class="form-control" asp-for="Email" />
+                                                <span asp-validation-for="Email" class="form-label text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="Mobile" class="label"></label>
+                                                <input type="number" placeholder="Number" class="form-control" asp-for="Mobile" />
+                                                <span asp-validation-for="Mobile" class="form-label text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="Subject" class="label"></label>
+                                                <input type="text" placeholder="Subject" class="form-control" asp-for="Subject" />
+                                                <span asp-validation-for="Subject" class="form-label text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="Message" class="label"></label>
+                                                <textarea asp-for="Message" class="form-control"></textarea>
+                                                <span asp-validation-for="Message" class="form-label text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <!-- ✅ Send Message Button -->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button class="btn text-black fw-semibold shadow-sm w-100 py-3 custom-btn" type="submit">
+                                                    Send message
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        @* <!-- ✅ NGO Button --> *@
+                                        @* <div class="col-md-12 mt-3"> *@
+                                        @*     <div class="form-group"> *@
+                                        @*         <a asp-controller="Home" asp-action="RegisterNGO" *@
+                                        @*            class="btn text-black fw-semibold shadow-sm w-100 py-3 custom-btn text-center"> *@
+                                        @*             Register as NGO *@
+                                        @*         </a> *@
+                                        @*     </div> *@
+                                        @* </div> *@
+
+                                    </div>
+                                </form>
+                                <!-- ✅ End Contact Form -->
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 d-flex align-items-stretch">
+                            <div class="info-wrap w-100 p-5 img"
+                                 style="background-image: url('@Url.Content("~/images/img.jpg")'); background-size: cover; background-position: center;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ✅ Gradient Styles -->
+<style>
+    /* Buttons */
+    .custom-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        border-radius: 30px;
+        font-size: 16px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .custom-btn:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 18px rgba(56, 249, 215, 0.45), 0 0 10px rgba(67, 233, 123, 0.35);
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+    .gradient-icon {
+        background: linear-gradient(135deg, #43e97b, #38f9d7); /* ✅ Theme gradient */
+        color: #fff;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* ✅ Hover effect */
+    .dbox:hover .gradient-icon {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(67,233,123,0.5);
+    }
+
+
+    /* Icons */
+    .gradient-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        font-size: 24px;
+        margin: 0 auto 15px auto;
+        color: #fff;
+    }
+</style>
+
+
+
+<!-- Full width Google Map of Pakistan -->
+<div class="map" style="width: 100vw; height: 450px; overflow: hidden; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6931930.623536476!2d60.899855050000006!3d30.375321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38db52d7cc6a6bdf%3A0xadc37bbd6e77e28d!2sPakistan!5e0!3m2!1sen!2s!4v1710940000000!5m2!1sen!2s"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+<style>
+    /* ✅ NGO Button with Gradient + Hover Effect */
+    .custom-ngo-btn {
+        font-size: 14px;
+        padding: 10px 28px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+        .custom-ngo-btn:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            color: #000;
+            text-decoration: none;
+        }
+
+</style>
+

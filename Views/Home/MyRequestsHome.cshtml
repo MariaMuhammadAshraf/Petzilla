@@ -1,0 +1,113 @@
+﻿@model IEnumerable<AptechVisionPetZilla.Models.AdoptionRequestsHome>
+
+<h2 class="text-center mb-4 heading-shadow">My Home Pet Adoption Requests</h2>
+
+<table class="table table-bordered table-hover custom-theme-table">
+    <thead class="table-dark">
+        <tr>
+            <th>Pet</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Requested On</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PetId</td>
+                <td>
+                    @if (item.Pet != null && !string.IsNullOrEmpty(item.Pet.ImageUrl))
+                    {
+                        <img src="@item.Pet.ImageUrl" alt="Pet Image"
+                             style="width:80px; height:80px; object-fit:cover; border-radius:8px;" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+            <td>
+                <span class="badge
+                           @(item.Status == "approved" ? "bg-success" :
+                             item.Status == "pending" ? "bg-warning text-dark" :
+                             item.Status == "rejected" ? "bg-danger" : "bg-secondary")">
+                    @item.Status
+                </span>
+            </td>
+                <td>@item.RequestedOn?.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    /* ✅ Heading black bold with shadow */
+    .heading-shadow {
+        font-weight: 800;
+        color: #000;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    /* ✅ Custom Theme Table */
+    .custom-theme-table {
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important; /* Stronger table shadow */
+    }
+
+        /* ✅ Table Header */
+        .custom-theme-table thead {
+            background: #000 !important;
+        }
+
+            .custom-theme-table thead th {
+                color: #fff !important;
+                font-weight: 700 !important;
+                font-size: 1rem;
+                text-transform: uppercase;
+            }
+
+        /* ✅ Table Cells */
+        .custom-theme-table td,
+        .custom-theme-table th {
+            vertical-align: middle;
+            padding: 14px 18px;
+            border-color: #e6f7f1 !important;
+        }
+
+        /* ✅ Row Hover */
+        .custom-theme-table tbody tr:hover {
+            background: rgba(67, 233, 123, 0.12) !important;
+            transition: all 0.3s ease-in-out;
+        }
+
+    /* ✅ Badges */
+    .badge {
+        padding: 6px 12px;
+        background: linear-gradient(135deg, #43e97b, #38f9d7) !important;
+        font-size: 0.85rem;
+        color: #000 !important;
+        border-radius: 20px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+        /* Approved */
+        .badge.bg-success {
+            background: linear-gradient(135deg, #43e97b, #38f9d7) !important;
+            color: #000 !important;
+        }
+
+        /* Pending → theme gradient */
+        .badge.bg-warning {
+            background: linear-gradient(135deg, #11998e, #38ef7d) !important;
+            color: #fff !important;
+        }
+
+        /* Rejected */
+        .badge.bg-danger {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b) !important;
+            color: #fff !important;
+        }
+</style>

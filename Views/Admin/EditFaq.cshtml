@@ -1,0 +1,59 @@
+﻿@model AptechVisionPetZilla.Models.Faq
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="custom-heading mb-4 text-center">Edit FAQ</h2>
+
+<form asp-action="EditFaq" method="post" class="card shadow p-4">
+    <input type="hidden" asp-for="Id" />
+
+    <!-- Question -->
+    <div class="form-group mb-3">
+        <label asp-for="Question" class="form-label"></label>
+        <input asp-for="Question" class="form-control" placeholder="Enter question..." />
+        <span asp-validation-for="Question" class="text-danger"></span>
+    </div>
+
+    <!-- Answer -->
+    <div class="form-group mb-3">
+        <label asp-for="Answer" class="form-label"></label>
+        <textarea asp-for="Answer" class="form-control" placeholder="Enter answer..." rows="4"></textarea>
+        <span asp-validation-for="Answer" class="text-danger"></span>
+    </div>
+
+    <!-- Buttons -->
+    <div class="text-center">
+        <button type="submit" class="btn custom-btn px-4">Update</button>
+        <a asp-action="ManageFaq" class="btn custom-btn px-4 ms-2">Cancel</a>
+    </div>
+</form>
+
+<style>
+    /* ✅ Stylish Heading */
+    .custom-heading {
+        font-weight: 800;
+        color: black;
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    /* ✅ Gradient Theme Button */
+    .custom-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black !important;
+        font-weight: 500;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 24px;
+        box-shadow: 0 4px 10px rgba(56, 249, 215, 0.4);
+        transition: all 0.3s ease;
+    }
+
+        .custom-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+</style>

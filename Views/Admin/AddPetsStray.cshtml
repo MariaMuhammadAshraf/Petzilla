@@ -1,0 +1,79 @@
+﻿@model AptechVisionPetZilla.Models.PetsStray
+@{
+    ViewData["Title"] = "Add New Pet";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="fw-bold text-center">Add Stray Pet</h2>
+
+<form asp-action="AddPetsStray" enctype="multipart/form-data" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Category" class="form-label">Category</label>
+        <select asp-for="Category" class="form-select">
+            <option value="">-- Select Category --</option>
+            <option value="Cat">Cat</option>
+            <option value="Dog">Dog</option>
+            <option value="Parrot">Parrot</option>
+            <option value="Sheep">Sheep</option>
+            <option value="Cow">Cow</option>
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IsAvailable" class="form-label">Availability</label>
+        <select asp-for="IsAvailable" class="form-select">
+            <option value="true">Available</option>
+            <option value="false">Adopted</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="petImage" class="form-label">Upload Image</label>
+        <input type="file" name="petImage" class="form-control" />
+    </div>
+
+    <!-- Gradient Buttons -->
+    <button type="submit" class="btn custom-gradient-btn">Add Pet</button>
+    <a href="@Url.Action("StrayPets", "Admin")" class="btn custom-gradient-btn-secondary">Cancel</a>
+</form>
+
+<!-- Custom CSS -->
+<style>
+    .custom-gradient-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black;
+        border: none;
+        padding: 8px 20px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+        .custom-gradient-btn:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            color: #fff;
+        }
+
+    .custom-gradient-btn-secondary {
+        background: linear-gradient(135deg, #38f9d7, #43e97b);
+        color: black;
+        border: none;
+        padding: 8px 20px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+        .custom-gradient-btn-secondary:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            color: #fff;
+        }
+</style>

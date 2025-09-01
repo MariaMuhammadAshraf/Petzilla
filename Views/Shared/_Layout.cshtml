@@ -1,0 +1,630 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>PetZilla</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+     
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="256x256" href="~/images/pawprint.png" />
+
+
+
+
+    <!-- External fonts and styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <!-- Local styles (use Razor helper @Url.Content) -->
+    <link rel="stylesheet" href="@Url.Content("~/css/animate.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/owl.carousel.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/owl.theme.default.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/magnific-popup.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap-datepicker.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/jquery.timepicker.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/flaticon.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")" />
+
+    @RenderSection("Scripts", required: false)
+   
+</head>
+
+<body>
+
+	<div class="wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 d-flex align-items-center">
+					<p class="mb-0 phone pl-md-2">
+						<a href="#"><span class="fa fa-phone mr-1"></span> +00 9999 000</a>
+						<a href="#"><span class="fa fa-paper-plane mr-1"></span>petzilla@email.com</a>
+					</p>
+				</div>
+				<div class="col-md-6 d-flex justify-content-md-end">
+					<div class="social-media">
+                        <p class="mb-0 d-flex">
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fab fa-facebook-f"></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fab fa-twitter"></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fab fa-instagram"></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fab fa-dribbble"></span></a>
+                        </p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <span class="flaticon-pawprint-1 me-2"></span>PetZilla
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Reviews">Review</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Faq">FAQs</a></li>
+                   
+
+
+                    @* dynamic dropdown *@
+                    <li class="nav-item dropdown"> 
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                             Category
+                         </a> 
+
+                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+                             @if (ViewBag.PetCategories != null) 
+                             { 
+                                 foreach (var cat in ViewBag.PetCategories) 
+                                 { 
+                                     <li> 
+                                         <a class="dropdown-item" asp-controller="Home" asp-action="@cat.ActionName"> 
+                                             @cat.Name 
+                                         </a> 
+                                     </li> 
+                                 } 
+                             } 
+                         </ul>
+                    </li>
+
+                   
+
+
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a></li>
+
+                    @if (Context.Session.GetString("Userrole") == "customer")
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="MyAccount">Account</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="logout">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="login">Login</a></li>
+                    }
+
+                    <!-- NGO Button as Navbar Item -->
+                    <!-- NGO Button as Navbar Item -->
+                    <li class="nav-item ms-5">
+                        <a asp-controller="Home" asp-action="RegisterNGO"
+                           class="btn btn-gradient text-black fw-semibold py-1 px-3 d-flex align-items-center">
+                            <i class="fas fa-hand-holding-heart me-2"></i> <!-- Professional NGO icon -->
+                            Register as NGO
+                        </a>
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+
+
+        </div>
+    </nav>
+
+
+
+<div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+                    <h2 class="footer-heading">PetZilla</h2>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    <ul class="ftco-footer-social p-0">
+                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fab fa-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fab fa-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fab fa-instagram"></span></a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+                    <h2 class="footer-heading">Latest News</h2>
+
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="img mr-4 rounded" style="background-image: url('@Url.Content("~/images/image_1.jpg")');"></a>
+                        <div class="text">
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span> April 7, 2025</a></div>
+                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="img mr-4 rounded" style="background-image: url('@Url.Content("~/images/image_2.jpg")');"></a>
+                        <div class="text">
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span> April 7, 2025</a></div>
+                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+                    <h2 class="footer-heading">Quick Links</h2>
+                    <ul class="list-unstyled">
+                        <li><a class="py-2 d-block" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a class="py-2 d-block" asp-controller="Home" asp-action="about">About</a></li>
+
+                        <li><a class="py-2 d-block" asp-controller="Home" asp-action="Reviews">Review</a></li>
+                        <li><a class="py-2 d-block" asp-controller="Home" asp-action="Faq">FAQs</a></li>
+
+                        
+                        
+                        <li><a class="py-2 d-block" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><a class="py-2 d-block" asp-controller="Home" asp-action="register">Register</a></li>
+                        <li><a class="py-2 d-block" asp-controller="Home" asp-action="login">Login</a></li>
+                        <li><a class="py-2 d-block" asp-controller="Home" asp-action="logout">Logout</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+                    <h2 class="footer-heading">Have a Questions?</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon fa fa-map"></span><span class="text">Nazimabad, Karachi, Pakistan</span></li>
+
+                            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 9999 0000</span></a></li>
+                            <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">petzilla@petzilla.com</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <p class="copyright">
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        All rights reserved | This template is made with
+                        <i class="fa fa-heart" aria-hidden="true"></i> by
+                        <a href="https://petzilla.com" target="_blank">PetZilla</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen">
+        <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+        </svg>
+    </div>
+
+    <!-- JS Scripts -->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <!-- Remove bootstrap.min.js because mdb.min.js includes Bootstrap already -->
+    <!-- <script src="~/js/bootstrap.min.js"></script> -->
+    <script src="~/js/jquery.easing.1.3.js"></script>
+    <script src="~/js/jquery.waypoints.min.js"></script>
+    <script src="~/js/jquery.stellar.min.js"></script>
+    <script src="~/js/jquery.animateNumber.min.js"></script>
+    <script src="~/js/bootstrap-datepicker.js"></script>
+    <script src="~/js/jquery.timepicker.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/scrollax.min.js"></script>
+
+    <!-- MDB UI Kit JS includes Bootstrap JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"></script>
+    <!-- Bootstrap Bundle JS (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/js/google-map.js"></script>
+
+    <script src="~/js/main.js"></script>
+
+
+
+    <!-- 🌟 Floating Chat Button front icon -->
+    <div id="chatToggleBtn"
+         class="btn btn-success position-fixed shadow"
+         title="Chat with assistant"
+         style="bottom: 20px; right: 20px; border-radius: 50%; width: 60px; height: 60px;
+       display: flex; justify-content: center; align-items: center; z-index: 9999; cursor: pointer;
+       background: linear-gradient(135deg,#43e97b,#38f9d7);
+       box-shadow: 0 6px 18px rgba(0,0,0,0.3), 0 0 8px rgba(67,233,123,0.8);
+       outline: 3px solid #38f9d7;
+        transition: all 0.3s ease;">
+        <i class="fas fa-comments text-white"
+           style="font-size: 28px;
+          text-shadow: 2px 2px 6px rgba(0,0,0,0.6);">
+        </i>
+
+    </div>
+
+    <!-- 🌟 Chat Box ander wala-->
+    <div id="chatBox"
+         style="position: fixed; bottom: 90px; right: 20px; width: 350px; max-height: 500px;
+            background-color: #1e1e2f; color: white; border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5); display: none; flex-direction: column;
+            z-index: 9998;">
+
+        <!-- Header assitant wala-->
+        <div style="background: linear-gradient(135deg,#43e97b,#38f9d7);
+                padding: 14px; font-weight: bold; border-top-left-radius: 18px;
+                border-top-right-radius: 18px; display: flex; justify-content: space-between;
+                align-items: center; color: black; box-shadow: 0px 3px 10px rgba(0,0,0,0.25);">
+            <strong>🐾 PetZilla</strong>
+            <span id="closeChat" style="cursor: pointer;">&times;</span>
+        </div>
+
+        <!-- Chat History show horahi -->
+        <div id="chatHistory" style="flex-grow: 1; overflow-y: auto; padding: 10px; max-height: 300px;">
+            <!-- Messages appear here -->
+        </div>
+
+        <!-- Input blue wala -->
+        <div style="padding: 10px; border-top: 1px solid #444;">
+            <textarea id="userInput" class="form-control" rows="2" placeholder="Ask about adoption, pets, or anything..."
+                      style="resize: none; border-radius: 10px;"></textarea>
+            <button class="btn w-100 fw-semibold mt-2 text-black"
+                    style="background: linear-gradient(135deg,#43e97b,#38f9d7);
+                       border: none; border-radius: 12px;
+                       box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
+                       transition: all 0.3s ease;" onclick="sendMessage()">
+                Send
+            </button>
+        </div>
+    </div>
+
+    @* <script> *@
+    @*     // Toggle chat box *@
+    @*     document.getElementById('chatToggleBtn').addEventListener('click', function () { *@
+    @*         const box = document.getElementById('chatBox'); *@
+    @*         box.style.display = box.style.display === 'none' ? 'flex' : 'none'; *@
+    @*     }); *@
+
+    @*     // Close button *@
+    @*     document.getElementById('closeChat').addEventListener('click', function () { *@
+    @*         document.getElementById('chatBox').style.display = 'none'; *@
+    @*     }); *@
+
+    @*     // Append chat messages *@
+    @*     function appendMessage(content, isUser) { *@
+    @*         const div = document.createElement("div"); *@
+    @*         div.className = "message " + (isUser ? "user-message" : "assistant-message"); *@
+    @*         div.innerText = content; *@
+    @*         div.style.marginBottom = "10px"; *@
+    @*         div.style.padding = "10px 15px"; *@
+    @*         div.style.borderRadius = "20px"; *@
+    @*         div.style.maxWidth = "75%"; *@
+    @*         div.style.wordWrap = "break-word"; *@
+    @*         div.style.alignSelf = isUser ? "flex-end" : "flex-start"; *@
+    @*         div.style.backgroundColor = isUser ? "#007bff" : "#343a40"; *@
+    @*         div.style.color = "white"; *@
+
+    @*         const history = document.getElementById("chatHistory"); *@
+    @*         history.appendChild(div); *@
+    @*         div.scrollIntoView({ behavior: "smooth" }); *@
+    @*     } *@
+
+    @*     // Send message *@
+    @*     function sendMessage() { *@
+    @*         const inputBox = document.getElementById("userInput"); *@
+    @*         const message = inputBox.value.trim(); *@
+    @*         if (!message) return; *@
+
+    @*         appendMessage(message, true); *@
+    @*         inputBox.value = ""; *@
+
+    @*         fetch('/Home/GetResponse', { *@
+    @*             method: 'POST', *@
+    @*             headers: { 'Content-Type': 'application/json' }, *@
+    @*             body: JSON.stringify({ message: message }) *@
+    @*         }) *@
+    @*         .then(res => res.json()) *@
+    @*         .then(data => { *@
+    @*             appendMessage(data.response, false); *@
+    @*         }) *@
+    @*         .catch(error => { *@
+    @*             appendMessage("Error: " + error, false); *@
+    @*         }); *@
+    @*     } *@
+    @* </script> *@
+
+
+    @* <script> *@
+    @*     // Toggle chat box *@
+    @*     document.getElementById('chatToggleBtn').addEventListener('click', function () { *@
+    @*         const box = document.getElementById('chatBox'); *@
+
+    @*         if (box.style.display === 'none' || box.style.display === '') { *@
+    @*             // ✅ Fresh open: clear previous messages *@
+    @*             document.getElementById("chatHistory").innerHTML = ""; *@
+
+    @*             // ✅ Show greeting message from PetZilla *@
+    @*             appendMessage("👋 Welcome to PetZilla! How can we help you today?", false); *@
+
+    @*             box.style.display = 'flex'; *@
+    @*         } else { *@
+    @*             box.style.display = 'none'; *@
+    @*         } *@
+    @*     }); *@
+
+    @*     // Close button *@
+    @*     document.getElementById('closeChat').addEventListener('click', function () { *@
+    @*         document.getElementById('chatBox').style.display = 'none'; *@
+    @*     }); *@
+
+    @*     // Append chat messages *@
+    @*     function appendMessage(content, isUser) { *@
+    @*         const div = document.createElement("div"); *@
+    @*         div.className = "message " + (isUser ? "user-message" : "assistant-message"); *@
+    @*         div.innerText = content; *@
+    @*         div.style.marginBottom = "10px"; *@
+    @*         div.style.padding = "10px 15px"; *@
+    @*         div.style.borderRadius = "20px"; *@
+    @*         div.style.maxWidth = "75%"; *@
+    @*         div.style.wordWrap = "break-word"; *@
+    @*         div.style.alignSelf = isUser ? "flex-end" : "flex-start"; *@
+    @*         div.style.backgroundColor = isUser ? "#007bff" : "#343a40"; *@
+    @*         div.style.color = "white"; *@
+
+    @*         const history = document.getElementById("chatHistory"); *@
+    @*         history.appendChild(div); *@
+    @*         div.scrollIntoView({ behavior: "smooth" }); *@
+    @*     } *@
+
+    @*     // Send message *@
+    @*     function sendMessage() { *@
+    @*         const inputBox = document.getElementById("userInput"); *@
+    @*         const message = inputBox.value.trim(); *@
+    @*         if (!message) return; *@
+
+    @*         appendMessage(message, true); *@
+    @*         inputBox.value = ""; *@
+
+    @*         fetch('/Home/GetResponse', { *@
+    @*             method: 'POST', *@
+    @*             headers: { 'Content-Type': 'application/json' }, *@
+    @*             body: JSON.stringify({ message: message }) *@
+    @*         }) *@
+    @*         .then(res => res.json()) *@
+    @*         .then(data => { *@
+    @*             appendMessage(data.response, false); *@
+    @*         }) *@
+    @*         .catch(error => { *@
+    @*             appendMessage("Error: " + error, false); *@
+    @*         }); *@
+    @*     } *@
+    @* </script> *@
+
+    <style>
+        #chatBox, #chatHistory, .message, #userInput {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+
+    <script>
+        // Toggle chat box
+        document.getElementById('chatToggleBtn').addEventListener('click', function () {
+            const box = document.getElementById('chatBox');
+
+            if (box.style.display === 'none' || box.style.display === '') {
+                // ✅ Fresh open: clear previous messages
+                document.getElementById("chatHistory").innerHTML = "";
+
+                // ✅ Show greeting message from PetZilla
+                appendMessage("👋 Welcome to PetZilla! How can we help you today?", false);
+
+                box.style.display = 'flex';
+            } else {
+                box.style.display = 'none';
+            }
+        });
+
+        // Close button
+        document.getElementById('closeChat').addEventListener('click', function () {
+            document.getElementById('chatBox').style.display = 'none';
+        });
+
+        // Append chat messages
+        function appendMessage(content, isUser) {
+            const div = document.createElement("div");
+            div.className = "message " + (isUser ? "user-message" : "assistant-message");
+            div.innerText = content;
+            div.style.marginBottom = "10px";
+            div.style.padding = "10px 15px";
+            div.style.borderRadius = "20px";
+            div.style.maxWidth = "75%";
+            div.style.wordWrap = "break-word";
+            div.style.alignSelf = isUser ? "flex-end" : "flex-start";
+            div.style.backgroundColor = isUser ? "#007bff" : "#343a40";
+            div.style.color = "white";
+
+            const history = document.getElementById("chatHistory");
+            history.appendChild(div);
+            div.scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Show typing indicator
+        function showTyping() {
+            const div = document.createElement("div");
+            div.className = "message assistant-message typing";
+            div.id = "typingIndicator";
+            div.innerText = "PetZilla is typing...";
+            div.style.marginBottom = "10px";
+            div.style.padding = "10px 15px";
+            div.style.borderRadius = "20px";
+            div.style.maxWidth = "75%";
+            div.style.wordWrap = "break-word";
+            div.style.alignSelf = "flex-start";
+            div.style.backgroundColor = "#343a40";
+            div.style.color = "white";
+            div.style.fontStyle = "italic";
+
+            const history = document.getElementById("chatHistory");
+            history.appendChild(div);
+            div.scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Remove typing indicator
+        function removeTyping() {
+            const typingDiv = document.getElementById("typingIndicator");
+            if (typingDiv) typingDiv.remove();
+        }
+
+        // Send message
+        function sendMessage() {
+            const inputBox = document.getElementById("userInput");
+            const message = inputBox.value.trim();
+            if (!message) return;
+
+            appendMessage(message, true);
+            inputBox.value = "";
+
+            // ✅ Show typing indicator
+            showTyping();
+
+            fetch('/Home/GetResponse', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            })
+            .then(res => res.json())
+            .then(data => {
+                // ✅ Remove typing indicator before showing response
+                removeTyping();
+                appendMessage(data.response, false);
+            })
+            .catch(error => {
+                removeTyping();
+                appendMessage("Error: " + error, false);
+            });
+        }
+
+        // Send message on Enter key
+        document.getElementById("userInput").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") sendMessage();
+        });
+    </script>
+
+
+</body>
+
+
+
+</html>
+
+<style>
+    /* Dropdown Item */
+    .custom-dropdown {
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 10px 18px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        color: #111 !important;
+    }
+
+        /* 👇 Override Bootstrap default hover */
+        .dropdown-menu .dropdown-item:hover,
+        .dropdown-menu .dropdown-item:focus,
+        .custom-dropdown:hover {
+            background: linear-gradient(135deg, #43e97b, #38f9d7) !important; /* Tumhara gradient */
+            color: #000 !important;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+
+    /* Navbar Link with Simple Top Line */
+    .navbar-nav .nav-link {
+        position: relative;
+        padding: 8px 5px;
+        color: #000;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .navbar-nav .nav-link::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #43e97b;
+            transform: scaleX(0); /* hidden initially */
+            transform-origin: left;
+            transition: transform 0.3s ease-in-out;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        border-radius: 6px;
+        transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+        font-size: 11px; /* thoda chhota font */
+        font-weight: 500;
+        line-height: 1.1; /* height reduce */
+        padding: 4px 10px; /* vertical aur horizontal padding kam ki */
+        border: 2px solid transparent; /* initial outline */
+        box-shadow: 2px 3px 6px rgba(56, 249, 215, 0.3); /* subtle shadow */
+    }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(56, 249, 215, 0.6); /* hover shadow */
+            border: 3px solid #38f9d7; /* stylish outline on hover */
+        }
+
+
+
+
+
+	html, body {
+		overflow-x: hidden;
+	}
+</style>
+
+    

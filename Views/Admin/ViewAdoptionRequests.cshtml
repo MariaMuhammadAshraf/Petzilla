@@ -1,0 +1,136 @@
+﻿@model IEnumerable<AptechVisionPetZilla.Models.AdoptionRequestsHome>
+
+@{
+    ViewData["Title"] = "View Adoption Requests";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mb-4">View Adoption Requests</h2>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Pet</th>
+            <th>Name</th>
+            <th>Requester</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Requested On</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            foreach (var request in Model)
+            {
+                <tr>
+                    <td>
+                        @if (request.Pet != null && !string.IsNullOrEmpty(request.Pet.ImageUrl))
+                        {
+                            <img src="@request.Pet.ImageUrl" alt="Pet Image"
+                                 style="width:80px; height:80px; object-fit:cover; border-radius:8px;" />
+                        }
+                        else
+                        {
+                            <span>No Image</span>
+                        }
+                    </td>
+                    <td>@request.Pet?.PetName</td>
+                    <td>@request.RequesterName</td>
+                    <td>@request.RequesterEmail</td>
+                    <td>@request.RequesterPhone</td>
+                    <td>
+                        <span class="badge bg-@GetStatusClass(request.Status)">
+                            @request.Status
+                        </span>
+                    </td>
+                    <td>@request.RequestedOn?.ToString("yyyy-MM-dd")</td>
+
+                    @* <td> *@
+                    @*     @if (request.Status != "approved") *@
+                    @*     { *@
+                    @*         <a asp-action="ApproveRequest" asp-route-id="@request.RequestId" class="btn btn-sm btn-success me-1">Approve</a> *@
+                    @*     } *@
+                    @*     @if (request.Status != "rejected") *@
+                    @*     { *@
+                    @*         <a asp-action="RejectRequest" asp-route-id="@request.RequestId" class="btn btn-sm btn-danger">Reject</a> *@
+                    @*     } *@
+                    @* </td> *@
+
+                    <td>
+                        @if (request.Status != "approved")
+                        {
+                            <a asp-action="ApproveRequest" asp-route-id="@request.RequestId" class="btn custom-gradient-approve btn-sm me-1">
+                                Approve
+                            </a>
+                        }
+                        @if (request.Status != "rejected")
+                        {
+                            <a asp-action="RejectRequest" asp-route-id="@request.RequestId" class="btn custom-gradient-reject btn-sm">
+                                Reject
+                            </a>
+                        }
+                    </td>
+
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center text-muted">No adoption requests found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@functions {
+    string GetStatusClass(string? status)
+    {
+        return status?.ToLower() switch
+        {
+            "approved" => "success",
+            "rejected" => "danger",
+            "pending" => "warning",
+            _ => "secondary"
+        };
+    }
+}
+<style>
+    /* Approve button - theme gradient */
+    .custom-gradient-approve {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black;
+        border: none;
+        font-weight: bold;
+        border-radius: 6px;
+        padding: 4px 12px;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+
+        .custom-gradient-approve:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            color: #fff;
+        }
+
+    /* Reject button - red-orange gradient */
+    .custom-gradient-reject {
+        background: linear-gradient(135deg, #f85032, #e73827);
+        color: black;
+        border: none;
+        font-weight: bold;
+        border-radius: 6px;
+        padding: 4px 12px;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+
+        .custom-gradient-reject:hover {
+            background: linear-gradient(135deg, #e73827, #f85032);
+            color: #fff;
+        }
+</style>

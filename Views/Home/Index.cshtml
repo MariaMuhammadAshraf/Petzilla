@@ -1,0 +1,840 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+<div class="hero-wrap js-fullheight"
+     style="background-image: url('@Url.Content("~/images/banner.png")');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            overflow:hidden;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);"
+     data-stellar-background-ratio="0.5">
+
+
+    <div class="overlay"></div>
+
+    <div class="d-flex align-items-center justify-content-center text-center" style="height: 100vh; width: 100%;">
+        <div class="col-md-11 ftco-animate text-white">
+
+            <h1 class="mb-4" style="
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a; /* deep neutral for professionalism */
+    line-height: 1.3;
+    max-width: 700px; /* keep text readable */
+    margin: 0 auto; /* center for banner */
+    text-align: center;
+    letter-spacing: 0.5px;
+">
+                Connecting Stray & Home Pets with Loving Families<br />
+                You Can Trust
+            </h1>
+
+
+
+            <p>
+                <a href="@Url.Action("About", "Home")"
+                   class="btn custom-gradient-btn mr-md-4 py-3 px-4">
+                    Learn More <span class="ion-ios-arrow-forward"></span>
+                </a>
+
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section bg-light ftco-no-pt ftco-intro">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
+                <div class="d-block services text-center shadow-sm rounded p-4 theme-service">
+                    <div class="icon d-flex align-items-center justify-content-center mb-3">
+                        <span class="fa fa-paw"
+                              style="font-size: 40px; color:lightgrey; text-shadow: 2px 2px 3px rgba(0,0,0,0.4);">
+                        </span>
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading text-black fw-semibold">Pet Adoption</h3>
+                        <p>Find loving homes for stray and home pets through our safe and verified adoption process.</p>
+                        <a href="/" class="btn btn-gradient btn-sm mt-2">
+                            Read More <span class="fa fa-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
+                <div class="d-block services text-center shadow-sm rounded p-4 theme-service">
+                    <div class="icon d-flex align-items-center justify-content-center mb-3">
+                        <span class="fa fa-heart" style="font-size: 40px; color:lightgrey; text-shadow: 2px 2px 3px rgba(0,0,0,0.4);"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Foster & Care</h3>
+                        <p>Provide temporary care for pets while helping them wait for their forever home.</p>
+                        <a href="/" class="btn btn-gradient btn-sm mt-2">
+                            Read More <span class="fa fa-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
+                <div class="d-block services text-center shadow-sm rounded p-4 theme-service">
+                    <div class="icon d-flex align-items-center justify-content-center mb-3">
+                        <span class="fa fa-stethoscope"   <span class="fa fa-heart" style="font-size: 40px; color:lightgrey; text-shadow: 2px 2px 3px rgba(0,0,0,0.4);"></span></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Health & Support</h3>
+                        <p>Access veterinary guidance and health support to ensure the well-being of adopted pets.</p>
+                        <a href="/" class="btn btn-gradient btn-sm mt-2">
+                            Read More <span class="fa fa-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<style>
+   
+    /* Icon Style */
+        .theme-service .icon{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 0 auto 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black;
+        box-shadow: 0 8px 25px rgba(56, 249, 215, 0.5); /* stronger shadow */
+        border: 3px solid #38f9d7; /* add border around icon */
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Optional: Hover effect for icons */
+        .theme-service .icon {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(56, 249, 215, 0.7); /* bigger shadow on hover */
+        border-color: #43e97b; /* change border color on hover */
+    }
+
+    /* Optional: Hover effect for icons */
+    .services:hover .icon {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(56, 249, 215, 0.7); /* bigger shadow on hover */
+        border-color: #43e97b; /* change border color on hover */
+    }
+
+    .btn-gradient {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        border-radius: 6px;
+        color: black;
+        font-weight: 500;
+        font-size: 12px;
+        padding: 4px 10px;
+        border: 2px solid transparent;
+        transition: all 0.2s;
+    }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(56, 249, 215, 0.6);
+            border: 2px solid #38f9d7;
+        }
+</style>
+
+
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+    <div class="container">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-5 d-flex">
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0"
+                     style="background-image:url('@Url.Content("~/images/banner-3.png")');">
+                </div>
+            </div>
+            <div class="col-md-7 pl-md-5 py-md-5">
+                <div class="heading-section pt-md-5">
+                    <h2 class="mb-4">Why Choose PetZilla?</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 services-2 w-100 d-flex">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-paw" style="font-size: 40px; color:#43e97b;"></span>
+                        </div>
+                        <div class="text pl-3">
+                            <h4>Trusted Adoptions</h4>
+                            <p>We connect loving families with stray and home pets in a safe, verified, and trusted environment.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 services-2 w-100 d-flex">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-heart" style="font-size: 40px; color:#43e97b;"></span>
+                        </div>
+                        <div class="text pl-3">
+                            <h4>Personalized Matching</h4>
+                            <p>We help you find the perfect pet match based on personality, lifestyle, and care requirements.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 services-2 w-100 d-flex">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-first-aid" style="font-size: 40px; color:#43e97b;"></span>
+                        </div>
+                        <div class="text pl-3">
+                            <h4>Health & Safety</h4>
+                            <p>All pets are checked and provided with basic health care, vaccination info, and emergency support guidance.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 services-2 w-100 d-flex">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-stethoscope" style="font-size: 40px; color:#43e97b;"></span>
+                        </div>
+                        <div class="text pl-3">
+                            <h4>Veterinary Assistance</h4>
+                            <p>We provide access to professional veterinary guidance for new pet parents to ensure a healthy start.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="ftco-counter bg-light py-5" id="section-counter"
+         style="width: 100vw; overflow:hidden; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);">
+    <div class="container-fluid px-0">
+        <div class="row no-gutters justify-content-center">
+
+            <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="counter-card text-center shadow-sm rounded p-4 mx-2">
+                    <div class="number gradient-text" data-number="120">0</div>
+                    <div class="label">Pets Adopted</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="counter-card text-center shadow-sm rounded p-4 mx-2">
+                    <div class="number gradient-text" data-number="75">0</div>
+                    <div class="label">Active Volunteers</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="counter-card text-center shadow-sm rounded p-4 mx-2">
+                    <div class="number gradient-text" data-number="200">0</div>
+                    <div class="label">Pets Rescued</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="counter-card text-center shadow-sm rounded p-4 mx-2">
+                    <div class="number gradient-text" data-number="95">0</div>
+                    <div class="label">Families Connected</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .counter-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 20px 10px;
+        width: 100%;
+        max-width: 180px;
+        transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+        border: 2px solid transparent; /* initial border */
+        box-shadow: 0 4px 12px rgba(56, 249, 215, 0.25); /* subtle shadow */
+    }
+
+        .counter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 3px 10px 25px rgba(56, 249, 215, 0.35); /* stronger shadow */
+            border-image-slice: 1;
+            border-width: 2px;
+            border-style: solid;
+            border-image-source: linear-gradient(135deg, #43e97b, #38f9d7); /* gradient outline */
+        }
+
+    .number {
+        font-size: 35px;
+        font-weight: 900;
+        margin-bottom: 8px;
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .label {
+        font-size: 16px;
+        color: #555;
+        font-weight: 900;
+    }
+
+</style>
+
+
+
+<section class="ftco-section bg-light ftco-faqs">
+    <div class="container">
+        <div class="row">
+            <!-- Images -->
+            <div class="col-lg-6 order-md-last">
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0 rounded shadow"
+                     style="background-image:url('@Url.Content("~/images/about.jpg")'); background-size: cover; background-position: center;">
+                    <a href="https://vimeo.com/45830194"
+                       class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
+                        <span class="fa fa-play"></span>
+                    </a>
+                </div>
+                <div class="d-flex mt-3">
+                    <div class="img img-2 mr-md-2 rounded shadow" style="background-image:url('@Url.Content("~/images/about-2.jpg")');"></div>
+                    <div class="img img-2 ml-md-2 rounded shadow" style="background-image:url('@Url.Content("~/images/about-3.jpg")');"></div>
+                </div>
+            </div>
+
+            <!-- FAQ Content -->
+            <div class="col-lg-6">
+                <div class="heading-section mb-5 mt-5 mt-lg-0">
+                    <h2 class="mb-3">Frequently Asked Questions</h2>
+                    <p>Quick answers to common questions about pet adoption, fostering, and care.</p>
+                </div>
+
+                <div id="accordion" class="myaccordion w-100" aria-multiselectable="true">
+                    <div class="card theme-faq-card">
+                        <div class="card-header p-0" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="faq-btn d-flex py-3 px-4 align-items-center justify-content-between"
+                                        data-mdb-toggle="collapse"
+                                        data-mdb-target="#collapseOne"
+                                        aria-expanded="true"
+                                        aria-controls="collapseOne"
+                                        data-mdb-parent="#accordion">
+                                    <p class="mb-0">How can I adopt a pet from PetZilla?</p>
+                                    <i class="fa fa-chevron-down"></i>
+                                </button>
+                            </h2>
+                        </div>
+                        <div class="collapse show" id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="card-body py-3 px-0">
+                                <ol>
+                                    <li>Browse our list of available pets on the website.</li>
+                                    <li>Fill out the adoption request form with your details.</li>
+                                    <li>Our team will review your application and connect you with the pet.</li>
+                                    <li>Schedule a visit or meeting to meet your potential pet.</li>
+                                    <li>Complete the adoption process with guidance from PetZilla.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card theme-faq-card">
+                        <div class="card-header p-0" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="faq-btn d-flex py-3 px-4 align-items-center justify-content-between collapsed"
+                                        data-mdb-toggle="collapse"
+                                        data-mdb-target="#collapseTwo"
+                                        aria-expanded="false"
+                                        aria-controls="collapseTwo"
+                                        data-mdb-parent="#accordion">
+                                    <p class="mb-0">How do I foster a pet temporarily?</p>
+                                    <i class="fa fa-chevron-down"></i>
+                                </button>
+                            </h2>
+                        </div>
+                        <div class="collapse" id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="card-body py-3 px-0">
+                                <ol>
+                                    <li>Sign up as a foster caregiver on PetZilla.</li>
+                                    <li>Choose a pet that matches your lifestyle and home environment.</li>
+                                    <li>Receive guidance and support from our team during the foster period.</li>
+                                    <li>Ensure the pet's health, feeding, and social needs are met.</li>
+                                    <li>Help the pet transition smoothly to its permanent home.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card theme-faq-card">
+                        <div class="card-header p-0" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="faq-btn d-flex py-3 px-4 align-items-center justify-content-between collapsed"
+                                        data-mdb-toggle="collapse"
+                                        data-mdb-target="#collapseThree"
+                                        aria-expanded="false"
+                                        aria-controls="collapseThree"
+                                        data-mdb-parent="#accordion">
+                                    <p class="mb-0">What support does PetZilla provide after adoption?</p>
+                                    <i class="fa fa-chevron-down"></i>
+                                </button>
+                            </h2>
+                        </div>
+                        <div class="collapse" id="collapseThree" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="card-body py-3 px-0">
+                                <ol>
+                                    <li>Access to veterinary guidance and health tips.</li>
+                                    <li>Follow-up support for any behavioral or care concerns.</li>
+                                    <li>Community support through forums and adoption events.</li>
+                                    <li>Resources for training, feeding, and pet wellness.</li>
+                                    <li>Continued advice to ensure a smooth transition for pets into their new homes.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more FAQs as needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .theme-faq-card {
+        background: #ffffff;
+        border-radius: 12px;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 12px rgba(56, 249, 215, 0.2);
+        border: 2px solid transparent;
+        transition: all 0.3s;
+    }
+
+        .theme-faq-card:hover {
+            box-shadow: 0 10px 25px rgba(56, 249, 215, 0.35);
+            border-image-slice: 1;
+            border-width: 2px;
+            border-style: solid;
+            border-image-source: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+    .faq-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black;
+        font-weight: 500;
+        font-size: 14px;
+        border-radius: 8px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        transition: all 0.3s;
+    }
+
+        .faq-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(56, 249, 215, 0.4);
+        }
+
+        .faq-btn i {
+            transition: transform 0.3s;
+        }
+
+        .faq-btn.collapsed i {
+            transform: rotate(0deg);
+        }
+
+        .faq-btn:not(.collapsed) i {
+            transform: rotate(180deg);
+        }
+
+    .icon-video {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(56, 249, 215, 0.3);
+        transition: all 0.3s;
+    }
+
+        .icon-video:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 249, 215, 0.5);
+        }
+
+    .img.img-2 {
+        width: 48%;
+        height: 100px;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+
+
+
+  
+<section class="ftco-section testimony-section"
+         style="width: 100vw; overflow:hidden; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);
+                background-image:url('@Url.Content("~/images/banner 2.png")');
+                background-size: cover; background-position: center; position: relative;">
+
+    <!-- Dark Overlay -->
+    <div class="overlay"
+         style="position:absolute; top:0; left:0; width:100%; height:100%;
+                background: rgba(0,0,0,0.55);"></div>
+
+    <div class="container position-relative">
+        <div class="row justify-content-center pb-5 mb-3">
+            <div class="col-md-8 heading-section text-center">
+                <h2 class="fw-bold"
+                    style="color:black; letter-spacing:2px; text-shadow:2px 2px 6px rgba(0,0,0,0.6);">
+                    Happy Clients &amp; Feedbacks
+                </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel ftco-owl">
+
+                    <!-- Another Item -->
+                    <div class="item">
+                        <div class="theme-testimony-card text-center">
+                            <div class="icon"><span class="fa fa-quote-left gradient-text"></span></div>
+                            @* <div class="user-img" style="background-image: url('@Url.Content("~/images/person_2.jpg")');"></div> *@
+                            <p class="mb-4 fst-italic mt-3">“The adoption process was seamless, and the support team helped every step of the way!”</p>
+                            <p class="name">Williams</p>
+                            <span class="position">Volunteer</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Item -->
+                    <div class="item">
+                        <div class="theme-testimony-card text-center">
+                            <div class="icon"><span class="fa fa-quote-left gradient-text"></span></div>
+                            @* <div class="user-img" style="background-image: url('@Url.Content("~/images/person_1.jpg")');"></div> *@
+                            <p class="mb-4 fst-italic mt-3">“PetZilla made adopting my dog super easy! The app is intuitive, and support is amazing.”</p>
+                            <p class="name">Roger</p>
+                            <span class="position">Adopter</span>
+                        </div>
+                    </div>
+
+                    <!-- Another Item -->
+                    <div class="item">
+                        <div class="theme-testimony-card text-center">
+                            <div class="icon"><span class="fa fa-quote-left gradient-text"></span></div>
+                            @* <div class="user-img" style="background-image: url('@Url.Content("~/images/person_2.jpg")');"></div> *@
+                            <p class="mb-4 fst-italic mt-3">“The adoption process was seamless, and the support team helped every step of the way!”</p>
+                            <p class="name">Sarah</p>
+                            <span class="position">Pet Owner</span>
+                        </div>
+                    </div>
+
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Theme Testimony Card with Gradient Border & Hover Effect */
+    .theme-testimony-card {
+        background: rgba(255, 255, 255, 0.08); /* Glass effect */
+        backdrop-filter: blur(12px);
+        border-radius: 25px;
+        padding: 30px 20px;
+        margin: 10px;
+        border: 6px solid rgba(67, 233, 123, 0.6); /* Strong gradient-like border */
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .theme-testimony-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(56, 249, 215, 0.3);
+            border: 5px solid rgba(255, 255, 255, 0.2);
+        }
+
+    /* User Image with Gradient Border & Hover Zoom */
+    .user-img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        border: 4px solid transparent;
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        background-image: linear-gradient(#fff,#fff), linear-gradient(135deg, #43e97b, #38f9d7);
+        box-shadow: 0 4px 12px rgba(56, 249, 215, 0.4);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        margin-bottom: 15px;
+    }
+
+        .user-img:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 18px rgba(56, 249, 215, 0.6);
+        }
+
+    /* Icon & Text */
+    .icon {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .theme-testimony-card p {
+        font-size: 1rem;
+        line-height: 1.6;
+        text-align: center;
+        color: black;
+    }
+
+    .name {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin: 5px 0 0 0;
+        color: black;
+    }
+
+    .position {
+        font-size: 0.9rem;
+        color: black;
+        font-weight: 500;
+    }
+</style>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate"
+                 style="color:#000; letter-spacing:2px; text-shadow:2px 5px 6px rgba(0,0,0,0.6);">
+                
+                <h2>PetZilla Gallery</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Gallery Item 1 -->
+            <div class="col-md-4 ftco-animate">
+                <div class="work mb-4 img d-flex align-items-end"
+                     style="background-image: url('@Url.Content("~/images/gallery-1.jpg")');">
+                    <a href="@Url.Content("~/images/gallery-1.jpg")" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <span class="fa fa-expand"></span>
+                    </a>
+                    <div class="desc w-100 px-4">
+                        <div class="text w-100 mb-3">
+                            <span>Cat</span>
+                            <h2><a href="work-single.html">Persian Cat</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 2 -->
+            <div class="col-md-4 ftco-animate">
+                <div class="work mb-4 img d-flex align-items-end"
+                     style="background-image: url('@Url.Content("~/images/gallery-2.jpg")');">
+                    <a href="@Url.Content("~/images/gallery-2.jpg")" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <span class="fa fa-expand"></span>
+                    </a>
+                    <div class="desc w-100 px-4">
+                        <div class="text w-100 mb-3">
+                            <span>Dog</span>
+                            <h2><a href="work-single.html">Pomeranian</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 3 -->
+            <div class="col-md-4 ftco-animate">
+                <div class="work mb-4 img d-flex align-items-end"
+                     style="background-image: url('@Url.Content("~/images/gallery-3.jpg")');">
+                    <a href="@Url.Content("~/images/gallery-3.jpg")" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <span class="fa fa-expand"></span>
+                    </a>
+                    <div class="desc w-100 px-4">
+                        <div class="text w-100 mb-3">
+                            <span>Cat</span>
+                            <h2><a href="work-single.html">Sphynx Cat</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 4 -->
+            <div class="col-md-4 ftco-animate">
+                <div class="work mb-4 img d-flex align-items-end"
+                     style="background-image: url('@Url.Content("~/images/gallery-4.jpg")');">
+                    <a href="@Url.Content("~/images/gallery-4.jpg")" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <span class="fa fa-expand"></span>
+                    </a>
+                    <div class="desc w-100 px-4">
+                        <div class="text w-100 mb-3">
+                            <span>Cat</span>
+                            <h2><a href="work-single.html">British Shorthair</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 5 -->
+            <div class="col-md-4 ftco-animate">
+                <div class="work mb-4 img d-flex align-items-end"
+                     style="background-image: url('@Url.Content("~/images/gallery-5.jpg")');">
+                    <a href="@Url.Content("~/images/gallery-5.jpg")" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <span class="fa fa-expand"></span>
+                    </a>
+                    <div class="desc w-100 px-4">
+                        <div class="text w-100 mb-3">
+                            <span>Dog</span>
+                            <h2><a href="work-single.html">Beagle</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 6 -->
+            <div class="col-md-4 ftco-animate">
+                <div class="work mb-4 img d-flex align-items-end"
+                     style="background-image: url('@Url.Content("~/images/gallery-6.jpg")');">
+                    <a href="@Url.Content("~/images/gallery-6.jpg")" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <span class="fa fa-expand"></span>
+                    </a>
+                    <div class="desc w-100 px-4">
+                        <div class="text w-100 mb-3">
+                            <span>Dog</span>
+                            <h2><a href="work-single.html">Pug</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 7 -->
+            <div class="col-md-4 ftco-animate">
+                <div class="work mb-4 img d-flex align-items-end"
+                     style="background-image: url('@Url.Content("~/images/03.png")');">
+                    <a href="@Url.Content("~/images/03.png")" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <span class="fa fa-expand"></span>
+                    </a>
+                    <div class="desc w-100 px-4">
+                        <div class="text w-100 mb-3">
+                            <span>Dog</span>
+                            <h2><a href="work-single.html">KOKO</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 8 -->
+            <div class="col-md-4 ftco-animate">
+                <div class="work mb-4 img d-flex align-items-end"
+                     style="background-image: url('@Url.Content("~/images/02.png")');">
+                    <a href="@Url.Content("~/images/02.png")" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <span class="fa fa-expand"></span>
+                    </a>
+                    <div class="desc w-100 px-4">
+                        <div class="text w-100 mb-3">
+                            <span>Cat</span>
+                            <h2><a href="work-single.html">Nano</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 9 -->
+            <div class="col-md-4 ftco-animate">
+                <div class="work mb-4 img d-flex align-items-end"
+                     style="background-image: url('@Url.Content("~/images/01.png")');">
+                    <a href="@Url.Content("~/images/01.png")" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <span class="fa fa-expand"></span>
+                    </a>
+                    <div class="desc w-100 px-4">
+                        <div class="text w-100 mb-3">
+                            <span>Dog</span>
+                            <h2><a href="work-single.html">Mano</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</section>
+
+
+
+<style>
+    .fa-expand {
+        font-size: 22px; /* icon size adjust kar sakte ho */
+        background: linear-gradient(135deg, #43e97b, #38f9d7); /* theme gradient */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        cursor: pointer;
+    }
+
+        /* Hover effect for gallery icon */
+        .fa-expand:hover {
+            transform: scale(1.2); /* thoda zoom effect on hover */
+            opacity: 0.9;
+        }
+
+    .custom-gradient-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7); /* 🌈 theme gradient */
+        border: none;
+        color: black;
+        font-weight: 00;
+        border-radius: 8px;
+        box-shadow: 2px 4px 12px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+    }
+
+        .custom-gradient-btn:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b); /* hover reverse */
+            transform: translateY(-2px);
+            box-shadow: 2px 6px 16px rgba(0,0,0,0.2);
+        }
+
+    html, body {
+        overflow-x: hidden;
+    }
+</style>
+
+

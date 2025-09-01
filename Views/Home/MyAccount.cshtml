@@ -1,0 +1,155 @@
+﻿@model AptechVisionPetZilla.Models.UserRegistration
+
+@{
+    ViewBag.Title = "My Account";
+}
+
+<section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb position-relative"
+         style="width: 100vw;
+                min-height: 100vh;
+                overflow: hidden;
+                margin-left: calc(-50vw + 50%);
+                margin-right: calc(-50vw + 50%);
+                padding-top: 100px;
+                padding-bottom: 100px;
+                background: #fff;">
+
+    <!-- 🌿 Soft Transparent Overlay -->
+    <div class="overlay"
+         style="background: linear-gradient(135deg, rgba(67,233,123,0.15), rgba(56,249,215,0.15));
+                position:absolute; top:0; left:0; right:0; bottom:0;"></div>
+
+    <div class="container d-flex justify-content-center position-relative">
+        <div class="col-md-6 col-lg-5">
+
+            <!-- 🌟 Glassmorphism Card -->
+            <div class="shadow-lg rounded-4 p-5 mt-4 mb-4"
+                 style="background: rgba(255, 255, 255, 0.08);
+                        backdrop-filter: blur(14px);
+                        border: 1.5px solid rgba(67,233,123,0.4);
+                        color: #fff;">
+
+                <h3 class="mb-4 text-center fw-bold"
+                    style="color:#000; letter-spacing:1px; text-shadow:0px 1px 2px rgba(255,255,255,0.4);">
+                    My Account
+                </h3>
+
+
+
+                <!-- Success and Error messages -->
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success">@TempData["success"]</div>
+                }
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["error"]</div>
+                }
+
+                <!-- Validation Summary -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!-- Form for User Account -->
+                <form asp-action="MyAccount" method="post">
+                    <input type="hidden" asp-for="UserId" />
+
+                    <!-- Username Field -->
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label">Username</label>
+                        <input asp-for="UserName" class="form-control" placeholder="Enter your name" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="mb-3">
+                        <label asp-for="UserEmail" class="form-label">Email</label>
+                        <input asp-for="UserEmail" class="form-control" placeholder="Enter your email" />
+                        <span asp-validation-for="UserEmail" class="text-danger"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+
+                    <!-- Change Password Link -->
+                    <div class="text-center mt-3">
+                        <small>
+                            <a href="@Url.Action("ChangePassword", "Home")">Change Password</a>
+                        </small>
+                    </div>
+                    <br />
+                    <br />
+
+                    <div class="d-grid">
+                        <a asp-controller="Home" asp-action="MyRequestsHome" class="btn btn-primary">
+                            MyHomePetsRequests
+                        </a>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="d-grid">
+                        <a asp-controller="Home" asp-action="MyRequestsStray" class="btn btn-primary">
+                            MyStrayPetsRequests
+                        </a>
+                    </div>
+                </form>
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+
+
+
+
+
+
+<!-- ✅ Reusable Gradient Button -->
+<style>
+    .register-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        border-radius: 25px;
+        padding: 6px 18px; /* 👈 size chhoti karne ke liye */
+        font-size: 14px; /* 👈 font thoda reduce */
+        color: black;
+        font-weight: 600;
+        border: none;
+        transition: all 0.4s ease-in-out;
+        box-shadow: 0 4px 10px rgba(67, 233, 123, 0.25);
+    }
+
+        .register-btn:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 18px rgba(56, 249, 215, 0.45), 0 0 10px rgba(67, 233, 123, 0.35);
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+    /* Shine effect overlay */
+        .register-btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: skewX(-25deg);
+        transition: left 0.6s ease;
+        z-index: -1;
+    }
+
+        .register-btn::after {
+        left: 125%;
+    }
+
+</style>

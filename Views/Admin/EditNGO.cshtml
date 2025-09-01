@@ -1,0 +1,102 @@
+﻿@model AptechVisionPetZilla.Models.Ngo
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Edit NGO";
+}
+
+<div class="container py-5">
+    <h2 class="section-title">Edit NGO</h2>
+
+    <form asp-action="EditNGO" method="post" class="custom-form shadow p-4 rounded">
+        <input type="hidden" asp-for="NgoId" />
+
+        <div class="mb-3">
+            <label asp-for="NgoName" class="form-label">NGO Name</label>
+            <input asp-for="NgoName" class="form-control custom-input" />
+            <span asp-validation-for="NgoName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control custom-input" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control custom-input" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label">Address</label>
+            <textarea asp-for="Address" class="form-control custom-input"></textarea>
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Branches" class="form-label">Branches</label>
+            <input asp-for="Branches" class="form-control custom-input" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AvailabilityStatus" class="form-label">Availability</label>
+            <select asp-for="AvailabilityStatus" class="form-control custom-input">
+                <option value="true" selected="@Model.AvailabilityStatus">Available</option>
+                <option value="false" selected="@(Model.AvailabilityStatus == false)">Not Available</option>
+            </select>
+        </div>
+        <div class="text-center">
+            <!-- ✅ Gradient Update Button -->
+            <button type="submit" class="btn custom-btn px-4 fw-bold">Edit</button>
+            <a asp-action="ManageNGO" class="btn custom-btn px-4 fw-bold">Back</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Heading */
+    .section-title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 26px;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Form box */
+    .custom-form {
+        background: #fff;
+        border-radius: 12px;
+    }
+
+    /* Inputs */
+    .custom-input {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+        .custom-input:focus {
+            border-color: #43e97b;
+            box-shadow: 0 0 6px rgba(56, 249, 215, 0.4);
+        }
+
+    /* ✅ Gradient Theme Buttons */
+    .custom-btn {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: black !important;
+        font-weight: 500;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 24px;
+        box-shadow: 0 4px 10px rgba(56, 249, 215, 0.4);
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+        .custom-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+</style>

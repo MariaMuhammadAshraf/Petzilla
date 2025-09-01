@@ -1,0 +1,158 @@
+﻿@{
+    ViewData["Title"] = "Analytics";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+ 
+
+@section Styles {
+    <style>
+        body {
+            background: linear-gradient(135deg, #eef2f3, #d9e4f5);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Header Style */
+        .analytics-header {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-bottom: 35px;
+        }
+
+        /* Metric Cards */
+        .metric-box {
+            border-radius: 20px;
+            padding: 25px 20px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease-in-out;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+            .metric-box:hover {
+                transform: translateY(-6px) scale(1.03);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            }
+
+        .metric-value {
+            font-size: 26px;
+            font-weight: bold;
+            margin-top: 8px;
+            color: #16a085;
+        }
+
+        .metric-box i {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #16a085;
+        }
+    </style>
+}
+
+<h2 class="analytics-header">📊 Adoption Analytics Overview</h2>
+
+<div class="row g-4 justify-content-center">
+    <div class="col-md-3">
+        <div class="metric-box">
+            <i class="fas fa-dog"></i>
+            Total Pets
+            <div class="metric-value">@ViewBag.TotalPets ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <i class="fas fa-file-alt"></i>
+            Total Requests
+            <div class="metric-value">@ViewBag.TotalRequests ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <i class="fas fa-check-circle"></i>
+            Approved
+            <div class="metric-value">@ViewBag.ApprovedRequests ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <i class="fas fa-hourglass-half"></i>
+            Pending
+            <div class="metric-value">@ViewBag.PendingRequests ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <i class="fas fa-times-circle"></i>
+            Rejected
+            <div class="metric-value">@ViewBag.RejectedRequests ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <i class="fas fa-envelope"></i>
+            Total Contacts
+            <div class="metric-value">@ViewBag.ContactCount ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-star"></i></div> <!-- review icon -->
+            <div>Total Reviews</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.ReviewCount ?? 0</div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-hand-holding-heart"></i></div>
+            <div>Total NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.TotalNgos ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-users"></i></div>
+            <div>Available NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.AvailableNgos ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-ban"></i></div>
+            <div>Unavailable NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.UnavailableNgos ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-clock"></i></div>
+            <div>Pending NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.PendingNgos ?? 0</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-box">
+            <div class="metric-icon"><i class="fas fa-check-circle"></i></div>
+            <div>Approved NGOs</div>
+            <div class="metric-value h4 fw-bold">@ViewBag.ApprovedNgos ?? 0</div>
+        </div>
+    </div>
+
+</div>
