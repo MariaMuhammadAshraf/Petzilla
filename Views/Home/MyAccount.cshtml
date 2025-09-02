@@ -49,54 +49,54 @@
                 <!-- Validation Summary -->
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <!-- Form for User Account -->
-                <form asp-action="MyAccount" method="post">
-                    <input type="hidden" asp-for="UserId" />
+              <form asp-action="MyAccount" method="post">
+    <input type="hidden" asp-for="UserId" />
 
-                    <!-- Username Field -->
-                    <div class="mb-3">
-                        <label asp-for="UserName" class="form-label">Username</label>
-                        <input asp-for="UserName" class="form-control" placeholder="Enter your name" />
-                        <span asp-validation-for="UserName" class="text-danger"></span>
-                    </div>
+    <div class="form-group mb-3">
+        <label asp-for="UserName" class="form-label fw-bold text-dark">Username</label>
+        <input asp-for="UserName" class="form-control" placeholder="Enter your name" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
 
-                    <!-- Email Field -->
-                    <div class="mb-3">
-                        <label asp-for="UserEmail" class="form-label">Email</label>
-                        <input asp-for="UserEmail" class="form-control" placeholder="Enter your email" />
-                        <span asp-validation-for="UserEmail" class="text-danger"></span>
-                    </div>
+    <div class="form-group mb-4">
+        <label asp-for="UserEmail" class="form-label fw-bold text-dark">Email</label>
+        <input asp-for="UserEmail" class="form-control" placeholder="Enter your email" />
+        <span asp-validation-for="UserEmail" class="text-danger"></span>
+    </div>
 
-                    <!-- Submit Button -->
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-
-                    <!-- Change Password Link -->
-                    <div class="text-center mt-3">
-                        <small>
-                            <a href="@Url.Action("ChangePassword", "Home")">Change Password</a>
-                        </small>
-                    </div>
-                    <br />
-                    <br />
-
-                    <div class="d-grid">
-                        <a asp-controller="Home" asp-action="MyRequestsHome" class="btn btn-primary">
-                            MyHomePetsRequests
-                        </a>
-                    </div>
-                    <br />
-                    <br />
-                    <div class="d-grid">
-                        <a asp-controller="Home" asp-action="MyRequestsStray" class="btn btn-primary">
-                            MyStrayPetsRequests
-                        </a>
-                    </div>
-                </form>
+    <div class="d-grid">
+        <button type="submit" class="btn  fw-bold register-btn">Update</button>
+    </div>
+               
 
 
 
+    <!-- Change Password Link -->
+    <div class="text-center mt-3">
+        <small>
+            <a href="@Url.Action("ChangePassword", "Home")">Change Password</a>
+        </small>
+    </div>
+    <br />
+    <br />
+
+    <div class="d-grid">
+        <a asp-controller="Home" asp-action="MyRequestsHome" class="btn register-btn">
+            MyHomePetsRequests
+        </a>
+    </div>
+    <br />
+    <br />
+    <div class="d-grid">
+        <a asp-controller="Home" asp-action="MyRequestsStray" class="btn register-btn">
+            MyStrayPetsRequests
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
 
 
