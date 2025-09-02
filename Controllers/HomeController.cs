@@ -200,49 +200,65 @@ namespace AptechVisionPetZilla.Controllers
             return RedirectToAction("ChangePassword");
         }
 
-        //my account
-        [HttpGet]
-        public IActionResult MyAccount()
-        {
-            string userEmail = CONTX.HttpContext.Session.GetString("UserEmail");
+        // GET: Show user account details
+ [HttpGet]
+ public IActionResult MyAccount()
+ {
+     // ? Correct: Fetching session value
+     string userEmail = CONTX.HttpContext.Session.GetString("UserEmail");
 
-            if (string.IsNullOrEmpty(userEmail))
-            {
-                TempData["error"] = "Session expired. Please login again.";
-                return RedirectToAction("Login");
-            }
+     // ? Correct: Handling if session is expired or missing
+     if (string.IsNullOrEmpty(userEmail))
+     {
+         TempData["error"] = "Session expired. Please login again.";
+         return RedirectToAction("Login");
+     }
 
-            var user = db.UserRegistrations.FirstOrDefault(u => u.UserEmail == userEmail);
-            ViewBag.PetCategories = db.PetCategories.ToList();
+     // ? Correct: Querying the user from the database using email
+     var user = db.UserRegistrations.FirstOrDefault(u => u.UserEmail == userEmail);
 
-            return View(user);
-        }
+     // ? Correct: Passing the user model to the view
+     ViewBag.PetCategories = db.PetCategories.ToList();
+     return View(user);
+ }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult MyAccount(UserRegistration model)
-        {
-            if (!ModelState.IsValid)
-            {
-                TempData["error"] = "Invalid data submitted.";
-                return View(model);
-            }
+ [HttpPost]
+ [ValidateAntiForgeryToken]
+ public IActionResult MyAccount(UserRegistration model)
+ {
+     if (!ModelState.IsValid)
+     {
+         // ? Log model state errors
+         foreach (var state in ModelState)
+         {
+             foreach (var error in state.Value.Errors)
+             {
+                 Console.WriteLine($"{state.Key}: {error.ErrorMessage}");
+             }
+         }
 
-            var user = db.UserRegistrations.FirstOrDefault(u => u.UserId == model.UserId);
-            if (user == null)
-            {
-                TempData["error"] = "User not found.";
-                return RedirectToAction("Login");
-            }
+         TempData["error"] = "Invalid data submitted.";
+         return View(model);
+     }
 
-            user.UserName = model.UserName;
-            user.UserEmail = model.UserEmail;
+     var user = db.UserRegistrations.FirstOrDefault(u => u.UserId == model.UserId);
+     if (user == null)
+     {
+         TempData["error"] = "User not found.";
+         return RedirectToAction("Login");
+     }
 
-            db.SaveChanges();
+     // ? Update fields
+     user.UserName = model.UserName;
+     user.UserEmail = model.UserEmail;
 
-            TempData["success"] = "Account updated successfully!";
-            return RedirectToAction("MyAccount");
-        }
+     db.SaveChanges();
+
+     TempData["success"] = "Account updated successfully!";
+     return RedirectToAction("MyAccount");
+ }
+
+
 
         //about work
         public IActionResult About()
@@ -406,47 +422,46 @@ namespace AptechVisionPetZilla.Controllers
         }
         
 
-        //register work
+       //register work
 
-        [HttpGet]
-        //public IActionResult Register() => View();
+ [HttpGet]
+ //public IActionResult Register() => View();
 
-        public IActionResult Register()
-        {
-            ViewBag.PetCategories = db.PetCategories.ToList();
-            return View();
-        }
+ public IActionResult Register()
+ {
+     ViewBag.PetCategories = db.PetCategories.ToList();
+     return View();
+ }
 
-        [HttpPost]
-        public IActionResult Register(UserRegistration newSTD)
-        {
-            if (ModelState.IsValid)
-            {
-                // Check if email already exists
-                bool emailExists = db.UserRegistrations
-                                    .Any(u => u.UserEmail == newSTD.UserEmail);
+ [HttpPost]
+ public IActionResult Register(UserRegistration newSTD)
+ {
+     if (ModelState.IsValid)
+     {
+         // Check if email already exists
+         bool emailExists = db.UserRegistrations
+                             .Any(u => u.UserEmail == newSTD.UserEmail);
 
-                if (emailExists)
-                {
-                    // Error message for duplicate email
-                    ModelState.AddModelError("UserEmail", "This email is already registered.");
-                    ViewBag.PetCategories = db.PetCategories.ToList();
-                    return View(newSTD);
-                }
+         if (emailExists)
+         {
+             // Error message for duplicate email
+             ModelState.AddModelError("UserEmail", "This email is already registered.");
+             ViewBag.PetCategories = db.PetCategories.ToList();
+             return View(newSTD);
+         }
 
-                // If email is unique, save new record
-                newSTD.UserRole = "customer";
-                db.UserRegistrations.Add(newSTD);
-                db.SaveChanges();
+         // If email is unique, save new record
+         newSTD.UserRole = "customer";
+         db.UserRegistrations.Add(newSTD);
+         db.SaveChanges();
 
-                ViewBag.RegistrationSuccess = true;
-                return RedirectToAction("Login"); // Optional: redirect to login page after success
-            }
+         ViewBag.RegistrationSuccess = true;
+         return RedirectToAction("Login"); // Optional: redirect to login page after success
+     }
 
-            ViewBag.PetCategories = db.PetCategories.ToList();
-            return View(newSTD);
-        }
-
+     ViewBag.PetCategories = db.PetCategories.ToList();
+     return View(newSTD);
+ }
 
 
 
