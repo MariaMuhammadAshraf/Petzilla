@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -521,19 +521,23 @@
             appendMessage(message, true);
             inputBox.value = "";
 
-            // ✅ Show typing indicator
             showTyping();
 
-            fetch('/Home/GetResponse', {
+            // ✅ Correct endpoint and safe JSON handling
+            fetch('/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: message })
             })
-            .then(res => res.json())
-            .then(data => {
-                // ✅ Remove typing indicator before showing response
+            .then(res => res.text()) // get raw text first
+            .then(text => {
                 removeTyping();
-                appendMessage(data.response, false);
+                try {
+                    const data = JSON.parse(text);
+                    appendMessage(data.response, false);
+                } catch {
+                    appendMessage("Error: Invalid JSON response", false);
+                }
             })
             .catch(error => {
                 removeTyping();
