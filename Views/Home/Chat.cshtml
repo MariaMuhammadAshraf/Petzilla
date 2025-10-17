@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Ask Adoption Assistant";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -162,7 +162,7 @@
  
 
 <!-- 🌐 Chat Toggle Button -->
-<div id="chat-toggle" onclick="toggleChatbox()">💬 Chat with us</div>
+@* <div id="chat-toggle" onclick="toggleChatbox()">💬 Chat with us</div>
 
 <!-- 💬 Floating Chat Box -->
 <div id="chat-box">
@@ -177,7 +177,7 @@
         <textarea id="userInput" rows="1" placeholder="Ask something..."></textarea>
         <button onclick="sendMessage()">Send</button>
     </div>
-</div>
+</div> *@
 
 @section Styles {
     <style>
@@ -318,7 +318,7 @@
     </style>
 }
 
-@section Scripts {
+@* @section Scripts {
     <script>
         function toggleChatbox() {
             const box = document.getElementById("chat-box");
@@ -355,4 +355,99 @@
             });
         }
     </script>
-}
+} *@
+
+
+
+
+
+
+
+
+<!-- 🌐 Chat Toggle Button -->
+<div id="chat-toggle" onclick="toggleChatbox()">💬 Chat with us</div>
+
+<!-- 💬 Floating Chat Box -->
+<div id="chat-box">
+    <div id="chat-header">
+        🐾 Adoption Assistant
+        <span onclick="toggleChatbox()" style="cursor:pointer; float:right;">✖</span>
+    </div>
+
+    <div id="chatHistory"></div>
+
+    <div id="chat-input">
+        <textarea id="userInput" rows="1" placeholder="Ask something..."></textarea>
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+<script>
+    const chatHistory = document.getElementById("chatHistory");
+    const userInput = document.getElementById("userInput");
+
+    function appendMessage(content, isUser) {
+        const div = document.createElement("div");
+        div.className = isUser ? "user-message" : "assistant-message";
+        div.innerText = content;
+        div.style.marginBottom = "10px";
+        div.style.padding = "10px 15px";
+        div.style.borderRadius = "20px";
+        div.style.maxWidth = "75%";
+        div.style.wordWrap = "break-word";
+        div.style.alignSelf = isUser ? "flex-end" : "flex-start";
+        div.style.backgroundColor = isUser ? "#007bff" : "#343a40";
+        div.style.color = "white";
+        chatHistory.appendChild(div);
+        div.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function showTyping() {
+        const div = document.createElement("div");
+        div.id = "typingIndicator";
+        div.innerText = "PetZilla is typing...";
+        div.style.fontStyle = "italic";
+        div.style.color = "#ccc";
+        chatHistory.appendChild(div);
+        div.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function removeTyping() {
+        const typingDiv = document.getElementById("typingIndicator");
+        if (typingDiv) typingDiv.remove();
+    }
+
+    function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+
+        appendMessage(message, true);
+        userInput.value = "";
+
+        showTyping();
+
+        // ✅ Safe fetch with text first, then JSON parse
+        fetch('/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: message })
+        })
+        .then(res => res.text()) // safer: get raw text first
+        .then(text => {
+            removeTyping();
+            try {
+                const data = JSON.parse(text);
+                appendMessage(data.response, false);
+            } catch {
+                appendMessage("Error: Invalid JSON response", false);
+            }
+        })
+        .catch(err => {
+            removeTyping();
+            appendMessage("Error: " + err, false);
+        });
+    }
+
+    userInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sendMessage();
+    });
+</script>
