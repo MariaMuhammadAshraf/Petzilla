@@ -18,7 +18,7 @@ namespace AptechVisionPetZilla.Controllers
         private readonly PetzillaContext db;
         private readonly IHttpContextAccessor CONTX;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _cohereApiKey = "dGzrG4qKbrtZxEdENUNuGDvCpkWckgAQr8sN9NGO"; // ← 🔁 Replace this
+        private readonly string _groqApiKey = "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"; // ⚠️ Move to appsettings.json later
 
         public HomeController(PetzillaContext db, IHttpContextAccessor contx, IWebHostEnvironment webHostEnvironment)
         {
@@ -98,49 +98,63 @@ namespace AptechVisionPetZilla.Controllers
 
 
         //chatbot Ai work
-        public IActionResult Chat()
-        {
-            return View();
-        }
 
-        public class ChatInput
-        {
-            public string Message { get; set; }
-        }
+ public IActionResult Chat()
+ {
+     return View();
+ }
 
-        [HttpPost]
-        public async Task<IActionResult> GetResponse([FromBody] ChatInput input)
-        {
-            if (string.IsNullOrWhiteSpace(input?.Message))
-            {
-                return Json(new { response = "Please enter a message." });
-            }
+ public class ChatRequest
+ {
+     public string Message { get; set; }
+ }
 
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _cohereApiKey);
+ [HttpPost("chat")]
+ public async Task<IActionResult> Chat([FromBody] ChatRequest input)
+ {
+     if (string.IsNullOrWhiteSpace(input?.Message))
+         return Json(new { response = "⚠️ Please enter a message." });
 
-            var requestBody = new
-            {
-                model = "command-r-plus",
-                message = input.Message,
-                temperature = 0.7,
-                max_tokens = 300
-            };
+     try
+     {
+         using (var client = new HttpClient())
+         {
+             client.DefaultRequestHeaders.Authorization =
+                 new AuthenticationHeaderValue("Bearer", _groqApiKey);
 
-            var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://api.cohere.ai/v1/chat", content);
-            var responseString = await response.Content.ReadAsStringAsync();
+             // ✅ Updated request body with system prompt for PetZilla
+             var requestBody = new
+             {
+                 model = "llama-3.3-70b-versatile",
+                 messages = new[]
+                 {
+             new { role = "system", content = "You are PetZilla, a professional and friendly pet assistant on a website. Always answer questions about pets clearly and politely, give advice on pet care, suggest pet names, and engage users in a helpful manner. Never say you are a computer program or mention a store."  },
+             new { role = "user", content = input.Message }
+         }
+             };
 
-            if (!response.IsSuccessStatusCode)
-            {
-                return Json(new { response = "API error: " + response.StatusCode });
-            }
+             string json = JsonConvert.SerializeObject(requestBody);
+             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            dynamic result = JsonConvert.DeserializeObject(responseString);
-            string reply = result?.text ?? "No response from AI.";
+             var response = await client.PostAsync("https://api.groq.com/openai/v1/chat/completions", content);
+             var responseString = await response.Content.ReadAsStringAsync();
 
-            return Json(new { response = reply });
-        }
+             if (!response.IsSuccessStatusCode)
+                 return Json(new { response = $"❌ API Error: {response.StatusCode} - {responseString}" });
+
+             // ✅ Parse OpenAI-compatible chat response
+             dynamic jsonResponse = JsonConvert.DeserializeObject(responseString);
+             string reply = jsonResponse?.choices?[0]?.message?.content ?? "No reply from AI.";
+
+             return Json(new { response = reply });
+         }
+     }
+     catch (Exception ex)
+     {
+         // Always return JSON even if something goes wrong
+         return Json(new { response = "❌ Exception: " + ex.Message });
+     }
+ }
 
         // Keep all your other methods as-is below 👇
 
