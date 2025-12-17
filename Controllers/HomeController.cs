@@ -18,7 +18,9 @@ namespace AptechVisionPetZilla.Controllers
         private readonly PetzillaContext db;
         private readonly IHttpContextAccessor CONTX;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        // private readonly string _groqApiKey = "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"; // ⚠️ Move to appsettings.json later
+      
+        private readonly string _groqApiKey;
+
 
         public HomeController(PetzillaContext db, IHttpContextAccessor contx, IWebHostEnvironment webHostEnvironment)
         {
