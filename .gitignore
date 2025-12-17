@@ -15,3 +15,32 @@ connectionstrings.txt
 # Logs
 *.log
 appsettings.json
+
+
+
+
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+
+
+
+
+    "ConnectionStrings": {
+        "DBCS":"Server=DESKTOP-EUUJM3C\\SQLEXPRESS;Initial Catalog=Petzilla;Persist Security Info=False;User ID=maria;Password=123456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;"
+    },
+  "AllowedHosts": "*"
+}
+
+
+{
+  "ApiKeys": {
+    "Groq": ""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";
+  }
+}
+
