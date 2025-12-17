@@ -14,3 +14,4 @@ connectionstrings.txt
 
 # Logs
 *.log
+appsettings.json
